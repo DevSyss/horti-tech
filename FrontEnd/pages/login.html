@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HortiTech - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/FrontEnd/css/login.css">
+</head>
+<body>
+
+    <div class="glass-background"></div>
+
+    <main class="main-container animate-pop-in">
+        <section class="left-side">
+            <div class="content-wrapper">
+                <div class="logo-area">
+                    <i class="fa-solid fa-leaf"></i>
+                    <span>HortiTech</span>
+                </div>
+                <h1>BEM-VINDO <br> <span class="highlight">DE VOLTA!</span></h1>
+                <p>NÃO POSSUI UMA CONTA?</p>
+                <a href="cadastro.html">
+    <button class="btn-outline">CADASTRE-SE</button>
+</a>
+
+                
+            </div>
+        </section>
+
+        <section class="right-side">
+            <div class="card-cadastro">
+                <div class="user-avatar">
+                    <div class="avatar-circle">
+                        <i class="fa-solid fa-circle-user"></i>
+                    </div>
+                </div>
+
+                <form class="form-container">
+                    <div class="input-group">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="text" placeholder="E-MAIL OU CPF" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="SENHA" required>
+                    </div>
+
+                    <div class="profile-selector-container">
+                        <p class="selector-title">SELECIONE SEU CARGO:</p>
+                        <div class="radio-inputs">
+                            <label class="radio">
+                                <input type="radio" name="perfil" checked>
+                                <span class="name">
+                                    <i class="fa-solid fa-user-tie"></i> Chefe
+                                </span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="perfil">
+                                <span class="name">
+                                    <i class="fa-solid fa-briefcase"></i> Funcionário
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-main">ENTRAR</button>
+                </form>
+
+                <div class="social-divider">
+                    <span>OU ENTRE COM</span>
+                </div>
+
+                <div class="social-wrapper">
+                    <a href="#" class="social-item"><i class="fa-brands fa-google"></i></a>
+                    <a href="#" class="social-item"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social-item"><i class="fa-brands fa-apple"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

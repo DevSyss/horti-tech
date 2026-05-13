@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HortiTech • Central de Alertas</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/FrontEnd/css/alerta.css">
+</head>
+
+<body>
+
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">
+        <i class="fa-solid fa-seedling"></i>
+      </div>
+      <h2>HortiTech</h2>
+    </div>
+
+    <nav class="menu">
+      <a href="#"><i class="fa-solid fa-chart-line"></i> <span>Monitoramento</span></a>
+      <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> <span>Histórico</span></a>
+      <a href="#" class="active"><i class="fa-solid fa-bell"></i> <span>Alertas</span></a>
+      <a href="#"><i class="fa-solid fa-circle-info"></i> <span>Informações</span></a>
+      <a href="#" class="support"><i class="fa-solid fa-headset"></i> <span>Suporte</span></a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <div class="title-area">
+        <h1>Central de Alertas</h1>
+        <p>Gerencie ocorrências em tempo real</p>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Buscar câmara...">
+        </div>
+        <button class="filter-btn">
+          <i class="fa-solid fa-sliders"></i>
+        </button>
+      </div>
+    </header>
+
+    <section class="alerts-section">
+      <div class="section-title">
+        <span>Hoje • 13 Maio</span>
+      </div>
+
+      <article class="alert-card warning">
+        <div class="alert-main-content">
+          <div class="icon-box">
+            <i class="fa-solid fa-temperature-high"></i>
+          </div>
+          <div class="alert-info">
+            <h3>Aumento de Temperatura</h3>
+            <div class="meta">
+              <span><i class="fa-solid fa-warehouse"></i> Câmara 01</span>
+              <span><i class="fa-solid fa-microchip"></i> ESP32</span>
+              <span><i class="fa-solid fa-clock"></i> 14:30h</span>
+            </div>
+          </div>
+        </div>
+        <div class="alert-side">
+          <strong>38.5°C</strong>
+          <button class="btn-details">Detalhes</button>
+        </div>
+      </article>
+
+      <article class="alert-card critical">
+        <div class="alert-main-content">
+          <div class="icon-box">
+            <i class="fa-solid fa-plug-circle-xmark"></i>
+          </div>
+          <div class="alert-info">
+            <h3>Falha de Conexão</h3>
+            <div class="meta">
+              <span><i class="fa-solid fa-wifi"></i> Gateway Offline</span>
+              <span><i class="fa-solid fa-location-dot"></i> Setor Norte</span>
+              <span><i class="fa-solid fa-clock"></i> 12:15h</span>
+            </div>
+          </div>
+        </div>
+        <div class="alert-side">
+          <div class="status-pill danger">OFFLINE</div>
+          <button class="btn-details">Detalhes</button>
+        </div>
+      </article>
+
+    </section>
+  </main>
+</div>
+
+</body>
+</html>

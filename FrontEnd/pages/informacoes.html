@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>HortiTech • Informações Gerais</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/FrontEnd/css/informacoes.css">
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="logo">
+
+      <div class="logo-icon">
+        <i class="fa-solid fa-leaf"></i>
+      </div>
+
+      <h2>HortiTech</h2>
+
+    </div>
+
+    <nav class="menu">
+
+      <a href="#">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Monitoramento</span>
+      </a>
+
+      <a href="#">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>Histórico</span>
+      </a>
+
+      <a href="#">
+        <i class="fa-solid fa-bell"></i>
+        <span>Alertas</span>
+      </a>
+
+      <a href="#" class="active">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Informações</span>
+      </a>
+
+      <a href="#" class="support">
+        <i class="fa-solid fa-headset"></i>
+        <span>Suporte</span>
+      </a>
+
+    </nav>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="topbar">
+
+      <div class="title">
+        <h1>Informações Gerais</h1>
+        <p>Painel completo do sistema de monitoramento</p>
+      </div>
+
+      <div class="status">
+
+        <div class="dot"></div>
+
+        <span>Sistema Online</span>
+
+      </div>
+
+    </div>
+
+    <div class="dashboard">
+
+      <!-- LEFT -->
+      <div>
+
+        <!-- CARD 1 -->
+        <section class="card">
+
+          <div class="card-header">
+
+            <div class="card-title">
+
+              <div class="icon">
+                <i class="fa-solid fa-warehouse"></i>
+              </div>
+
+              <div>
+                <h2>Câmara 01 • São Paulo</h2>
+              </div>
+
+            </div>
+
+            <div class="tag">
+              ATIVA
+            </div>
+
+          </div>
+
+          <div class="info-grid">
+
+            <div class="info-box">
+              <span>Temperatura Máxima</span>
+              <strong>11°C</strong>
+            </div>
+
+            <div class="info-box">
+              <span>Temperatura Mínima</span>
+              <strong>1°C</strong>
+            </div>
+
+            <div class="info-box">
+              <span>Umidade</span>
+              <strong>74%</strong>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- CARD 2 -->
+        <section class="card">
+
+          <div class="card-header">
+
+            <div class="card-title">
+
+              <div class="icon">
+                <i class="fa-solid fa-microchip"></i>
+              </div>
+
+              <div>
+                <h2>ESP32 • Dispositivo Principal</h2>
+              </div>
+
+            </div>
+
+            <div class="tag">
+              ONLINE
+            </div>
+
+          </div>
+
+          <div class="info-grid">
+
+            <div class="info-box">
+              <span>ID do Dispositivo</span>
+              <strong>1234567</strong>
+            </div>
+
+            <div class="info-box">
+              <span>Status</span>
+              <strong>Ativa</strong>
+            </div>
+
+            <div class="info-box">
+              <span>Localização</span>
+              <strong>Sorocaba</strong>
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+      <!-- RIGHT -->
+      <aside>
+
+        <div class="side-card">
+
+          <h3>Sensores Online</h3>
+
+          <strong>92%</strong>
+
+          <div class="progress">
+            <div></div>
+          </div>
+
+        </div>
+
+        <div class="side-card">
+
+          <h3>Alertas Hoje</h3>
+
+          <strong>12</strong>
+
+        </div>
+
+        <div class="side-card">
+
+          <h3>Última Atualização</h3>
+
+          <strong class="time">
+            14:32
+          </strong>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>
