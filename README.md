@@ -1,6 +1,6 @@
 # **Projeto - Sistema De Gerenciamento De Câmaras Frias**
 
-### *Trabalho acadêmico — Desenvolvimento Full Stack (Frontend + Backend + Banco + + IoT + Documentação)*
+### *Trabalho acadêmico — Desenvolvimento Full Stack (Frontend + Backend + MySQL + IoT + Documentação)*
 
 Este repositório contém todas as etapas, artefatos, códigos e documentações produzidas durante o desenvolvimento do sistema de um
 
