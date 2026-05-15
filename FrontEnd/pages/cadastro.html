@@ -10,15 +10,12 @@
 
     <title>HortiTech - Cadastro</title>
 
-    <!-- ICONS -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
           rel="stylesheet">
 
-    <!-- CSS -->
     <link rel="stylesheet"
           href="/css/cadastro.css">
 
@@ -28,7 +25,7 @@
 
 <div class="glass-background"></div>
 
-<main class="main-container">
+<main class="main-container animate-pop-in">
 
     <!-- ESQUERDA -->
     <section class="left-side">
@@ -60,8 +57,8 @@
             <a href="login.html">
 
                 <button
-                        class="btn-outline"
                         type="button"
+                        class="btn-outline"
                 >
                     LOGIN
                 </button>
@@ -83,8 +80,10 @@
 
             </div>
 
-            <!-- FORM -->
-            <form id="cadastroForm">
+            <form
+                    id="cadastroForm"
+                    class="form-container"
+            >
 
                 <!-- NOME -->
                 <div class="input-group">
@@ -146,6 +145,7 @@
                 <button
                         type="submit"
                         class="btn-main"
+                        id="btnCadastrar"
                 >
                     CADASTRAR
                 </button>
@@ -158,7 +158,6 @@
 
 </main>
 
-<!-- JS -->
 <script src="/script/cadastro.js"></script>
 
 </body>
