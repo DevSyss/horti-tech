@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HortiTech | Monitoramento Ativo</title>
+
+    <link rel="stylesheet" href="historico.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="logo-area">
+
+                <div class="logo-icon">🌿</div>
+
+                <div class="logo-text">
+                    <h1>HortiTech</h1>
+                    <span>Monitoramento Inteligente</span>
+                </div>
+
+            </div>
+
+            <nav>
+
+                <ul>
+
+                    <li>
+                        📡
+                        <span>MONITORAMENTO</span>
+                    </li>
+
+                    <li class="active">
+                        📈
+                        <span>HISTÓRICO</span>
+                    </li>
+
+                    <li>
+                        🚨
+                        <span>ALERTAS</span>
+                    </li>
+
+                    <li>
+                        📋
+                        <span>INFORMAÇÕES GERAIS</span>
+                    </li>
+
+                    <li>
+                        💬
+                        <span>SUPORTE</span>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </aside>
+
+        <!-- MAIN -->
+        <main class="content">
+
+            <div class="top-header">
+
+                <div>
+                    <h1>Painel de Monitoramento</h1>
+
+                    <p>
+                        Controle inteligente de temperatura e umidade
+                    </p>
+                </div>
+
+                <div class="status-box">
+                    <div class="status-dot"></div>
+                    Sistema Online
+                </div>
+
+            </div>
+
+            <!-- TEMPERATURA -->
+            <section class="chart-section">
+
+                <div class="header-flex">
+
+                    <h2>
+                        Histórico de Temperatura (°C)
+                    </h2>
+
+                    <div class="controls">
+
+                        <input
+                            type="number"
+                            id="tempInput"
+                            placeholder="Nova temperatura"
+                        >
+
+                        <button onclick="updateTemp()">
+                            Atualizar
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="chart-card">
+                    <canvas id="tempChart"></canvas>
+                </div>
+
+            </section>
+
+            <!-- UMIDADE -->
+            <section class="chart-section">
+
+                <div class="header-flex">
+
+                    <h2>
+                        Histórico de Umidade (%)
+                    </h2>
+
+                    <div class="controls">
+
+                        <input
+                            type="number"
+                            id="umidInput"
+                            placeholder="Nova umidade"
+                        >
+
+                        <button onclick="updateUmid()">
+                            Atualizar
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="chart-card">
+                    <canvas id="umidChart"></canvas>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="historico.js"></script>
+
+</body>
+</html>
