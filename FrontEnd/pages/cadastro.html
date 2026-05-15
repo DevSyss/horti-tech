@@ -8,14 +8,17 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>HortiTech - Cadastro</title>
+    <title>HortiTech - Cadastro Colaborador</title>
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
           rel="stylesheet">
 
+    <!-- ICONS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- CSS -->
     <link rel="stylesheet"
           href="/css/cadastro.css">
 
@@ -42,16 +45,16 @@
 
             <h1>
 
-                BEM-VINDO <br>
+                CADASTRE <br>
 
                 <span class="highlight">
-                    DE VOLTA!
+                    COLABORADORES
                 </span>
 
             </h1>
 
             <p>
-                Gerencie sua produção com inteligência tecnológica.
+                Gerencie sua equipe com tecnologia e segurança.
             </p>
 
             <a href="login.html">
@@ -80,10 +83,8 @@
 
             </div>
 
-            <form
-                    id="cadastroForm"
-                    class="form-container"
-            >
+            <!-- FORM -->
+            <form id="cadastroForm">
 
                 <!-- NOME -->
                 <div class="input-group">
@@ -108,6 +109,7 @@
                             type="text"
                             id="cpf"
                             placeholder="CPF"
+                            maxlength="14"
                             required
                     >
 
@@ -158,6 +160,7 @@
 
 </main>
 
+<!-- JS -->
 <script src="/script/cadastro.js"></script>
 
 </body>
