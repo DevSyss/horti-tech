@@ -1,101 +1,95 @@
-const form = document.getElementById("cadastroForm");
+const form =
+    document.getElementById(
+        "cadastroForm"
+    );
 
-const botao = document.getElementById("btnCadastrar");
+form.addEventListener(
+    "submit",
 
-form.addEventListener("submit", async (event) => {
+    async (event) => {
 
-    event.preventDefault();
+        event.preventDefault();
 
-    botao.innerHTML = "CADASTRANDO...";
-    botao.disabled = true;
+        // DADOS
+        const colaborador = {
 
-    // Campos
-    const email = document
-        .getElementById("email")
-        .value
-        .trim();
+            nome:
+                document.getElementById("nome").value,
 
-    const senha = document
-        .getElementById("senha")
-        .value
-        .trim();
+            cpf:
+                document.getElementById("cpf").value,
 
-    // Tipo
-    const tipo = document.querySelector(
-        'input[name="perfil"]:checked'
-    ).value;
+            email:
+                document.getElementById("email").value,
 
-    // Objeto
-    const usuario = {
+            senha:
+                document.getElementById("senha").value
+        };
 
-        email: email,
-        senha: senha,
-        tipo: tipo
+        console.log(colaborador);
 
-    };
+        try {
 
-    console.log(usuario);
+            const response =
+                await fetch(
 
-    try {
+                    "http://localhost:8080/api/colaboradores",
 
-        const response = await fetch(
-            "http://localhost:8080/usuarios/cadastro",
-            {
+                    {
 
-                method: "POST",
+                        method: "POST",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                        headers: {
 
-                body: JSON.stringify(usuario)
+                            "Content-Type":
+                                "application/json"
+                        },
 
+                        body:
+                            JSON.stringify(colaborador)
+                    }
+                );
+
+            // SUCESSO
+            if(response.ok) {
+
+                const data =
+                    await response.json();
+
+                console.log(data);
+
+                alert(
+                    "Cadastro realizado com sucesso!"
+                );
+
+                // REDIRECIONA
+                window.location.href =
+                    "login.html";
             }
-        );
 
-        // SUCESSO
-        if (response.ok) {
+            // ERRO
+            else {
 
-            const usuarioCriado =
-                await response.json();
+                const erro =
+                    await response.text();
 
-            console.log(usuarioCriado);
+                console.log(erro);
 
-            alert("Usuário cadastrado com sucesso!");
-
-            form.reset();
-
-            window.location.href =
-                "login.html";
+                alert(
+                    "Erro ao cadastrar!"
+                );
+            }
 
         }
 
-        // ERRO
-        else {
+        catch(error) {
 
-            const erro =
-                await response.text();
+            console.log(error);
 
             alert(
-                "Erro ao cadastrar:\n" + erro
+                "Erro ao conectar com backend!"
             );
-
         }
 
     }
-
-    catch (error) {
-
-        console.error(error);
-
-        alert(
-            "Erro ao conectar com backend!"
-        );
-
-    }
-
-    botao.innerHTML = "CADASTRE-SE";
-
-    botao.disabled = false;
-
-});
+);
