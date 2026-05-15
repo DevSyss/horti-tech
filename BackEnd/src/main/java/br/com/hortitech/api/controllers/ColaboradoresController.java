@@ -21,7 +21,7 @@ import br.com.hortitech.api.services.ColaboradoresServices;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/colabradores")
+@RequestMapping("/api/colaboradores")
 @CrossOrigin("*")
 public class ColaboradoresController {
 
