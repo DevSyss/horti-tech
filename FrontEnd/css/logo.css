@@ -1,101 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #f1f4ee;
-    overflow: hidden; /* Evita barras de rolagem indesejadas */
-}
-
 .main-screen {
     height: 100vh;
     width: 100vw;
     background-color: #f1f4ee;
+    
+    /* Centralização garantida */
     display: flex;
     justify-content: center;
     align-items: center;
+    
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
 }
 
-/* LOGO CENTRALIZADA */
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Forçamos um tamanho mínimo para o container não encolher */
+    min-width: 300px;
+    min-height: 200px;
+}
+
 .main-logo {
-    width: 550px;
-    max-width: 85%;
+    /* Forçamos o tamanho aqui para ela não ficar minúscula */
+    width: 450px; 
     height: auto;
-    z-index: 10;
-    position: relative;
+    display: block;
+    
     opacity: 0;
-    animation: revealLogo 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: revealLogo 1.2s ease-out forwards;
 }
 
-/* PLANTAS GRANDES (Moldura Botânica) */
-.big-plant {
-    position: absolute;
-    height: 55%; /* Tamanho gigante para impacto */
-    opacity: 0;
-    pointer-events: none;
-    z-index: 1;
-    /* Filtro para dar um ar mais artístico e menos saturado */
-    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.08)) saturate(0.8);
-    animation: revealPlants 2.5s ease-out 0.3s forwards;
-}
-
-/* Posicionamento estratégico nos cantos */
-.top-left {
-    top: -15%;
-    left: -12%;
-    transform: rotate(-15deg);
-}
-
-.top-right {
-    top: -12%;
-    right: -18%;
-    transform: rotate(20deg);
-    height: 65%; /* Variação para não ficar repetitivo */
-}
-
-.bottom-left {
-    bottom: -25%;
-    left: -10%;
-    transform: rotate(10deg);
-}
-
-.bottom-right {
-    bottom: -18%;
-    right: -12%;
-    transform: rotate(-25deg);
-}
-
-/* ANIMAÇÕES */
 @keyframes revealLogo {
-    0% { 
-        opacity: 0; 
-        transform: scale(0.92) translateY(20px); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: scale(1) translateY(0); 
-    }
-}
-
-@keyframes revealPlants {
-    0% { 
-        opacity: 0; 
-    }
-    100% { 
-        opacity: 0.9; /* Quase sólidas, mas com leve elegância */
-    }
-}
-
-/* Saída suave para o Dashboard */
-.fade-out {
-    opacity: 0;
-    transition: opacity 0.8s ease;
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
 }
