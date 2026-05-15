@@ -40,16 +40,19 @@ public class Colaboradores {
     @NotBlank(message = "A Senha É Obrigatório.")
     private String senha;
     
-    
+    @NotBlank(message = "O Tipo É Obrigatório")
+	@Column(nullable = false)
+	private String tipo;
 
     
     public Colaboradores() {}
-    public Colaboradores(Long id, String nome, String cpf, String email, String senha) {
+    public Colaboradores(Long id, String nome, String cpf, String email, String senha, String tipo) {
     	this.id = id;
     	this.nome = nome;
     	this.cpf = cpf;
     	this.email = email;
     	this.senha = senha;
+    	this.tipo = tipo;
 
     }
 	public Long getId() {
@@ -82,6 +85,12 @@ public class Colaboradores {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
     
     
