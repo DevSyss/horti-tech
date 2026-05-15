@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HortiTech | Monitoramento</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -41,7 +43,6 @@
             width: 100vw;
         }
 
-        /* --- SIDEBAR --- */
         .side-navigation {
             width: 280px;
             background: var(--bg-side);
@@ -100,7 +101,11 @@
             transition: all 0.3s ease;
         }
 
-        .nav-link i { font-size: 18px; width: 25px; text-align: center; }
+        .nav-link i {
+            font-size: 18px;
+            width: 25px;
+            text-align: center;
+        }
 
         .nav-link:hover {
             background: #f8f9fa;
@@ -142,7 +147,6 @@
             box-shadow: 0 0 10px #2ecc71;
         }
 
-        /* --- MAIN VIEWPORT --- */
         .main-viewport {
             flex: 1;
             display: flex;
@@ -166,7 +170,9 @@
             color: var(--text-light);
         }
 
-        .breadcrumb b { color: var(--text-main); }
+        .breadcrumb b {
+            color: var(--text-main);
+        }
 
         .user-profile {
             display: flex;
@@ -189,15 +195,21 @@
             flex: 1;
         }
 
-        /* --- DASHBOARD ELEMENTS --- */
         .animate-in {
             animation: slideUp 0.6s ease forwards;
             opacity: 0;
         }
 
         @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .main-heading {
@@ -206,9 +218,10 @@
             margin-bottom: 30px;
         }
 
-        .highlight { color: var(--primary-color); }
+        .highlight {
+            color: var(--primary-color);
+        }
 
-        /* GRID SYSTEM */
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -225,7 +238,9 @@
             transition: transform 0.3s ease;
         }
 
-        .card:hover { transform: translateY(-5px); }
+        .card:hover {
+            transform: translateY(-5px);
+        }
 
         .card-header {
             display: flex;
@@ -242,7 +257,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* MONITORAMENTO DE TEMPERATURA */
         .temp-display {
             text-align: center;
             padding: 20px 0;
@@ -281,10 +295,9 @@
             border-radius: 50%;
             cursor: pointer;
             border: 3px solid white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
-        /* LISTA DE ALERTAS */
         .alert-list {
             display: flex;
             flex-direction: column;
@@ -306,10 +319,16 @@
             font-size: 18px;
         }
 
-        .alert-info h4 { font-size: 13px; font-weight: 700; }
-        .alert-info p { font-size: 11px; color: var(--text-light); }
+        .alert-info h4 {
+            font-size: 13px;
+            font-weight: 700;
+        }
 
-        /* EQUIPE / COLABORADORES */
+        .alert-info p {
+            font-size: 11px;
+            color: var(--text-light);
+        }
+
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -337,8 +356,16 @@
             font-size: 14px;
         }
 
-        .member-name { font-size: 12px; font-weight: 700; display: block; }
-        .member-role { font-size: 10px; color: var(--text-light); }
+        .member-name {
+            font-size: 12px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .member-role {
+            font-size: 10px;
+            color: var(--text-light);
+        }
 
         .btn-add {
             background: var(--primary-color);
@@ -351,10 +378,12 @@
             transition: 0.3s;
         }
 
-        .btn-add:hover { background: var(--primary-dark); }
-
+        .btn-add:hover {
+            background: var(--primary-dark);
+        }
     </style>
 </head>
+
 <body>
     <div class="app-wrapper">
         <aside class="side-navigation">
@@ -364,14 +393,15 @@
                 </div>
                 <span>HortiTech</span>
             </div>
-            
+
             <nav class="nav-menu">
-                <a href="#" class="nav-link active"><i class="fa-solid fa-gauge-high"></i> <span>MONITORAMENTO</span></a>
+                <a href="#" class="nav-link active"><i class="fa-solid fa-gauge-high"></i>
+                    <span>MONITORAMENTO</span></a>
                 <a href="#" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> <span>HISTÓRICO</span></a>
                 <a href="#" class="nav-link"><i class="fa-solid fa-bell"></i> <span>ALERTAS</span></a>
-                
+
                 <div class="nav-item-separator">SISTEMA</div>
-                
+
                 <a href="#" class="nav-link"><i class="fa-solid fa-circle-info"></i> <span>INFORMAÇÕES GERAIS</span></a>
                 <a href="#" class="nav-link"><i class="fa-solid fa-headset"></i> <span>SUPORTE</span></a>
             </nav>
@@ -385,7 +415,8 @@
 
         <main class="main-viewport">
             <header class="content-header">
-                <div class="breadcrumb">Sistema <i class="fa-solid fa-chevron-right" style="font-size: 10px; margin: 0 5px;"></i> <b>Monitoramento</b></div>
+                <div class="breadcrumb">Sistema <i class="fa-solid fa-chevron-right"
+                        style="font-size: 10px; margin: 0 5px;"></i> <b>Monitoramento</b></div>
                 <div class="user-profile">
                     <div class="user-info" style="text-align: right; margin-right: 10px;">
                         <span class="user-name" style="display: block; font-size: 13px; font-weight: 700;">Admin</span>
@@ -398,7 +429,7 @@
             <div class="scrollable-content">
                 <section class="animate-in">
                     <h1 class="main-heading">Painel de <span class="highlight">Controle</span></h1>
-                    
+
                     <div class="dashboard-grid">
                         <div class="card">
                             <div class="card-header">
@@ -417,7 +448,9 @@
                         <div class="card">
                             <div class="card-header">
                                 <span class="card-title">Alertas Recentes</span>
-                                <span style="font-size: 10px; background: #ff7675; color: white; padding: 2px 8px; border-radius: 20px;">3 ATIVOS</span>
+                                <span
+                                    style="font-size: 10px; background: #ff7675; color: white; padding: 2px 8px; border-radius: 20px;">3
+                                    ATIVOS</span>
                             </div>
                             <div class="alert-list">
                                 <div class="alert-item">
@@ -462,10 +495,12 @@
                             <span class="card-title">Eficiência do Sistema</span>
                             <span class="highlight" style="font-weight: 700;">82%</span>
                         </div>
-                        <div style="height: 8px; background: #f1f2f6; border-radius: 10px; overflow: hidden; margin-top: 10px;">
+                        <div
+                            style="height: 8px; background: #f1f2f6; border-radius: 10px; overflow: hidden; margin-top: 10px;">
                             <div style="width: 82%; height: 100%; background: var(--primary-color);"></div>
                         </div>
-                        <p style="font-size: 12px; color: var(--text-light); margin-top: 15px;">A performance operacional das câmaras frias mantém-se dentro da margem de segurança estabelecida.</p>
+                        <p style="font-size: 12px; color: var(--text-light); margin-top: 15px;">A performance
+                            operacional das câmaras frias mantém-se dentro da margem de segurança estabelecida.</p>
                     </div>
                 </section>
             </div>
@@ -479,9 +514,9 @@
 
         slider.addEventListener('input', (e) => {
             display.innerText = e.target.value + '°C';
-            
-            // Troca de cor se ficar muito alta (exemplo profissional)
-            if(e.target.value > 12) {
+
+            // Troca de cor se ficar muito alta 
+            if (e.target.value > 12) {
                 display.style.color = '#ff7675';
             } else {
                 display.style.color = 'var(--text-main)';
@@ -489,4 +524,5 @@
         });
     </script>
 </body>
+
 </html>
