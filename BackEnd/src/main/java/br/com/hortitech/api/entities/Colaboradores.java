@@ -22,9 +22,11 @@ public class Colaboradores {
     private Long id;
 	
 
-	@Pattern(regexp="^[\\p{L}]+( [\\p{L}+)*$", message = "O Nome Do Aluno Deve Conter Apenas Letras E Espaços")
-    @NotBlank(message = "O Nome É Obrigatório.")
-    private String nome;
+	@NotBlank(message = "O Nome É Obrigatório.")
+	@Pattern(
+	    regexp = "^[\\p{L} ]+$",
+	    message = "O nome deve conter apenas letras e espaços")
+	private String nome;
 	
 	@NotBlank(message = "O CPF É Obrigatótio.")
 	@CPF(message = "CPF Inválido")
