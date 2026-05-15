@@ -8,15 +8,15 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>HortiTech - Cadastro</title>
-
-    <!-- ICONS -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>HortiTech - Cadastro Colaborador</title>
 
     <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
           rel="stylesheet">
+
+    <!-- ICONS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- CSS -->
     <link rel="stylesheet"
@@ -28,7 +28,7 @@
 
 <div class="glass-background"></div>
 
-<main class="main-container">
+<main class="main-container animate-pop-in">
 
     <!-- ESQUERDA -->
     <section class="left-side">
@@ -45,23 +45,23 @@
 
             <h1>
 
-                BEM-VINDO <br>
+                CADASTRE <br>
 
                 <span class="highlight">
-                    DE VOLTA!
+                    COLABORADORES
                 </span>
 
             </h1>
 
             <p>
-                Gerencie sua produção com inteligência tecnológica.
+                Gerencie sua equipe com tecnologia e segurança.
             </p>
 
             <a href="login.html">
 
                 <button
-                        class="btn-outline"
                         type="button"
+                        class="btn-outline"
                 >
                     LOGIN
                 </button>
@@ -109,6 +109,7 @@
                             type="text"
                             id="cpf"
                             placeholder="CPF"
+                            maxlength="14"
                             required
                     >
 
@@ -146,6 +147,7 @@
                 <button
                         type="submit"
                         class="btn-main"
+                        id="btnCadastrar"
                 >
                     CADASTRAR
                 </button>
