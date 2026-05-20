@@ -44,7 +44,7 @@ form.addEventListener(
             // REQUISIÇÃO
             const response =
                 await fetch(
-                    "http://localhost:8080/usuarios/login",
+                    "http://localhost:8080/usuarios",
 
                     {
 
