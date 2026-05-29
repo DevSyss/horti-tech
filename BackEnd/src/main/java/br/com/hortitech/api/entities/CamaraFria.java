@@ -6,6 +6,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+
 
 @Entity
 @Table(name = "tb_camaraFria")
@@ -16,24 +19,33 @@ public class CamaraFria {
 		    @GeneratedValue(strategy = GenerationType.IDENTITY)
 		    private Long id;
 
+			@NotBlank(message = "O Nome É Obrigatório.")
+			@Pattern(
+			    regexp = "^[\\p{L} ]+$",
+			    message = "O nome deve conter apenas letras e espaços")
+			private String nome;
+			
 		    @NotBlank(message = "O Local É Obrigatório.")
 		    private String local;
 			
 			private Double temperaturaMinima;
 			
-			@NotBlank(message = "A Temperatura É Obrigatória")
+
+			@NotNull(message = "Temperatura máxima obrigatória")
 			private Double temperaturaMaxima;
 
-			private boolean statusAtivo;
+			@NotBlank(message = "O Sensor É Obrigatório.")
+			private String sensor;
 			
 		    
 		    public CamaraFria() {}
-		    public CamaraFria(long id, String local, Double temperaturaMinima, Double temperaturaMaxima, boolean statusAtivo ) {
+		    public CamaraFria(long id, String local, Double temperaturaMinima, Double temperaturaMaxima, String nome, String sensor) {
 		    	this.id = id;
 		    	this.local = local;
 		    	this.temperaturaMinima = temperaturaMinima;
 		    	this.temperaturaMaxima = temperaturaMaxima;
-		    	this.statusAtivo = statusAtivo;
+		    	this.nome = nome;
+		    	this.sensor = sensor;
 		    
 		    
 	}
@@ -42,6 +54,12 @@ public class CamaraFria {
 			}
 			public void setId(Long id) {
 				this.id = id;
+			}
+			public String getNome() {
+				return nome;
+			}
+			public void setNome(String nome) {
+				this.nome = nome;
 			}
 			public String getLocal() {
 				return local;
@@ -61,12 +79,14 @@ public class CamaraFria {
 			public void setTemperaturaMaxima(Double temperaturaMaxima) {
 				this.temperaturaMaxima = temperaturaMaxima;
 			}
-			public boolean getStatusAtivo() {
-				return statusAtivo;
+			public String getSensor() {
+				return sensor;
 			}
-			public void setStatusAtivo(boolean statusAtivo) {
-				this.statusAtivo = statusAtivo;
+			public void setSensor(String sensor) {
+				this.sensor = sensor;
 			}
+
+
 
 		    
 }
