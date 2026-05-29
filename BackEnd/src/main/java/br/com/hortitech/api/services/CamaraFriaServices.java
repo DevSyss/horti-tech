@@ -38,7 +38,8 @@ public class CamaraFriaServices {
 		atualizado.setLocal(camaraFriaAlterado.getLocal());
 		atualizado.setTemperaturaMinima(camaraFriaAlterado.getTemperaturaMinima());
 		atualizado.setTemperaturaMaxima(camaraFriaAlterado.getTemperaturaMaxima());
-		atualizado.setStatusAtivo(camaraFriaAlterado.getStatusAtivo());
+		atualizado.setNome(camaraFriaAlterado.getNome());
+		atualizado.setSensor(camaraFriaAlterado.getSensor());
 		return repository.save(atualizado);
 	}
 	

@@ -1,149 +1,175 @@
 const form =
-    document.getElementById(
-        "cadastroForm"
-    );
+document.getElementById(
+"cadastroForm"
+);
 
 const botao =
-    document.getElementById(
-        "btnCadastrar"
-    );
+document.getElementById(
+"btnCadastrar"
+);
+
 
 // MÁSCARA CPF
+
 document
-    .getElementById("cpf")
-    .addEventListener("input", (e) => {
+.getElementById("cpf")
+.addEventListener(
 
-        let value =
-            e.target.value
-                .replace(/\D/g, "");
+"input",
 
-        value = value.replace(
-            /(\d{3})(\d)/,
-            "$1.$2"
-        );
+(e)=>{
 
-        value = value.replace(
-            /(\d{3})(\d)/,
-            "$1.$2"
-        );
+let value=
+e.target.value.replace(
+    /\D/g,
+''
+);
 
-        value = value.replace(
-            /(\d{3})(\d{1,2})$/,
-            "$1-$2"
-        );
+value=value.replace(
+/(\d{3})(\d)/,
+'$1.$2'
+);
 
-        e.target.value = value;
-    });
+value=value.replace(
+/(\d{3})(\d)/,
+'$1.$2'
+);
+
+value=value.replace(
+/(\d{3})(\d{1,2})$/,
+'$1-$2'
+);
+
+e.target.value=value;
+
+});
+
+
 
 form.addEventListener(
-    "submit",
 
-    async (event) => {
+"submit",
 
-        event.preventDefault();
+async(event)=>{
 
-        botao.innerHTML =
-            "CADASTRANDO...";
+event.preventDefault();
 
-        botao.disabled = true;
+botao.innerText=
+"CADASTRANDO...";
 
-        // DADOS
-        const colaborador = {
+botao.disabled=true;
 
-            nome:
-                document
-                    .getElementById("nome")
-                    .value
-                    .trim(),
+const colaborador={
 
-            cpf:
-                document
-                    .getElementById("cpf")
-                    .value
-                    .trim(),
+nome:
+document
+.getElementById(
+"nome"
+)
+.value.trim(),
 
-            email:
-                document
-                    .getElementById("email")
-                    .value
-                    .trim(),
+cpf:
+document
+.getElementById(
+"cpf"
+)
+.value.trim(),
 
-            senha:
-                document
-                    .getElementById("senha")
-                    .value
-                    .trim()
-        };
+email:
+document
+.getElementById(
+"email"
+)
+.value.trim(),
 
-        console.log(colaborador);
+senha:
+document
+.getElementById(
+"senha"
+)
+.value.trim(),
 
-        try {
+tipo:
+document
+.getElementById(
+"tipo"
+)
+.value
 
-            const response =
-                await fetch(
+};
 
-                    "http://localhost:8080/api/colaboradores",
+console.log(colaborador);
 
-                    {
+try{
 
-                        method: "POST",
+const response=
+await fetch(
 
-                        headers: {
+"http://localhost:8080/colaboradores",
 
-                            "Content-Type":
-                                "application/json"
-                        },
+{
 
-                        body:
-                            JSON.stringify(colaborador)
-                    }
-                );
+method:"POST",
 
-            // SUCESSO
-            if(response.ok) {
+headers:{
 
-                const data =
-                    await response.json();
+"Content-Type":
+"application/json"
 
-                console.log(data);
+},
 
-                alert(
-                    "Colaborador cadastrado com sucesso!"
-                );
+body:
+JSON.stringify(
+colaborador
+)
 
-                form.reset();
+}
 
-                window.location.href =
-                    "login.html";
-            }
-
-            // ERRO
-            else {
-
-                const erro =
-                    await response.text();
-
-                console.log(erro);
-
-                alert(
-                    "Erro ao cadastrar:\n" + erro
-                );
-            }
-
-        }
-
-        catch(error) {
-
-            console.error(error);
-
-            alert(
-                "Erro ao conectar com backend!"
-            );
-        }
-
-        botao.innerHTML =
-            "CADASTRAR";
-
-        botao.disabled = false;
-    }
 );
+
+if(response.ok){
+
+const data=
+await response.json();
+
+console.log(data);
+
+alert(
+"Colaborador cadastrado com sucesso!"
+);
+
+form.reset();
+
+window.location.href=
+"login.html";
+
+}else{
+
+const erro=
+await response.text();
+
+console.log(erro);
+
+alert(
+"Erro ao cadastrar:\n"+
+erro
+);
+
+}
+
+}catch(error){
+
+console.log(error);
+
+alert(
+"Erro ao conectar ao backend"
+);
+
+}
+
+botao.innerText=
+"CADASTRAR";
+
+botao.disabled=false;
+
+});
