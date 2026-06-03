@@ -11,7 +11,7 @@ import jakarta.validation.constraints.Pattern;
 
 
 @Entity
-@Table(name = "tb_camaraFria")
+@Table(name = "tb_camara")
 public class CamaraFria {
 
 

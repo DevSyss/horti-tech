@@ -20,7 +20,7 @@ import br.com.hortitech.api.services.UsuarioServices;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios")
 // @CrossOrigin("*")
 public class UsuarioController {
 
@@ -34,9 +34,9 @@ public class UsuarioController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> buscar(@PathVariable Long id) {
-		Optional<Usuario> turma = service.buscarPorId(id);
-		if (turma.isPresent()) {
-			return ResponseEntity.ok(turma.get());
+		Optional<Usuario> usuario = service.buscarPorId(id);
+		if (usuario.isPresent()) {
+			return ResponseEntity.ok(usuario.get());
 		}
 		return ResponseEntity.notFound().build();
 	}

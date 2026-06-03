@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 
 @RestController
 
-@RequestMapping("/colaboradores")
+@RequestMapping("/api/colaboradores")
 
 @CrossOrigin("*")
 public class ColaboradoresController {

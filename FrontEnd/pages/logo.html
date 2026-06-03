@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HortiTech | Splash</title>
+    <link rel="stylesheet" href="/css/logo.css">
+</head>
+<body>
+
+    <div id="splash-screen" class="main-screen">
+        
+        <img src="banana-leaf-isolated-detailed-watercolor-hand-drawn-painting-illustration-png.webp" alt="" class="big-plant top-left">
+        <img src="banana-leaf-isolated-detailed-watercolor-hand-drawn-painting-illustration-png.webp" alt="" class="big-plant bottom-right">
+        <img src="pngtree-botanical-leaves-label-png-image_10018541.png" alt="" class="big-plant top-right">
+        <img src="pngtree-botanical-leaves-label-png-image_10018541.png" alt="" class="big-plant bottom-left">
+
+        <div class="logo-wrapper">
+            <img src="Captura_de_tela_2026-05-13_084523-removebg-preview.png" alt="HortiTech Logo" class="main-logo">
+        </div>
+
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash-screen');
+            
+            setTimeout(() => {
+                splash.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 800);
+                
+            }, 3000);
+        });
+    </script>
+
+</body>
+</html>
