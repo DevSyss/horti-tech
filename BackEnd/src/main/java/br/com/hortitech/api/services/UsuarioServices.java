@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import br.com.hortitech.api.entities.Usuario;
 import br.com.hortitech.api.repositories.UsuarioRepository;
@@ -74,19 +76,17 @@ public class UsuarioServices {
 		return repository.findByEmail(email);
 	}
 
-	public Usuario login(String email, String senha) {
 
-		Usuario usuario = repository.findByEmail(email)
-				.orElseThrow(() -> new RuntimeException("Usuário Não Encontrado"));
+public Usuario login(String email, String senha) {
+    // Procura o usuário pelo e-mail usando o seu UsuarioRepository
+    Usuario usuario = repository.findByEmail(email)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário não encontrado."));
 
-		boolean senhaValida = password.matches(senha, usuario.getSenha());
+    // Verifica se a senha enviada é igual à senha gravada no banco de dados
+    if (!usuario.getSenha().equals(senha)) {
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Senha incorreta.");
+    }
 
-		if (!senhaValida) {
-			throw new RuntimeException("Senha Inválida");
-
-		}
-
-		return usuario;
-
-	}
+    return usuario; // Retorna o usuário autenticado para o Controller enviar ao Frontend
+}
 }
