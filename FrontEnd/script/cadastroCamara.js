@@ -1,265 +1,77 @@
-const form = document.getElementById("cameraForm");
-const btnCadastrar = document.getElementById("btnCadastrar");
+const API_CAMERA_URL = "http://localhost:8080/api/cameras";
 
-const API_URL = "http://localhost:8080/api/camaraFria";
-
-function mostrarMensagem(texto,tipo){
-
-    const mensagem = document.createElement("div");
-
-    mensagem.innerText = texto;
-
-    mensagem.style.position = "fixed";
-    mensagem.style.top = "20px";
-    mensagem.style.right = "20px";
-    mensagem.style.padding = "15px";
-    mensagem.style.borderRadius = "10px";
-    mensagem.style.fontWeight = "bold";
-    mensagem.style.zIndex = "999";
-
-    if(tipo==="erro"){
-
-        mensagem.style.background="#ff4d4d";
-        mensagem.style.color="white";
-
-    }else{
-
-        mensagem.style.background="#5cb85c";
-        mensagem.style.color="white";
-
+// Proteção da Rota: Verifica se o usuário está logado
+document.addEventListener("DOMContentLoaded", () => {
+    const usuarioLogado = localStorage.getItem("usuario");
+    if (!usuarioLogado) {
+        alert("Acesso negado. Por favor, faça login.");
+        window.location.href = "login.html";
+        return;
     }
 
-    document.body.appendChild(mensagem);
+    const usuario = JSON.parse(usuarioLogado);
+    document.getElementById("nomeUsuario").innerText = `Olá, ${usuario.nome}!`;
+    
+    // Carrega a lista de câmeras salvas
+    listarCameras();
+});
 
-    setTimeout(()=>{
+// Envio do formulário da Câmera
+document.getElementById("formCamera").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-        mensagem.remove();
+    const nomeCamera = document.getElementById("nomeCamera").value;
+    const localizacao = document.getElementById("localizacao").value;
+    const temperaturaMaxima = parseFloat(document.getElementById("tempMax").value);
+    const status = document.getElementById("status").value;
+    const msgElement = document.getElementById("cameraMsg");
 
-    },3000);
+    const dadosCamera = { nomeCamera, localizacao, temperaturaMaxima, status };
 
-}
+    try {
+        const response = await fetch(API_CAMERA_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dadosCamera)
+        });
 
-
-function alterarBotao(carregando){
-
-    if(carregando){
-
-        btnCadastrar.disabled=true;
-
-        btnCadastrar.innerHTML=
-        '<i class="fa-solid fa-spinner fa-spin"></i> CADASTRANDO...';
-
+        if (response.ok) {
+            msgElement.style.color = "green";
+            msgElement.innerText = "Câmera cadastrada com sucesso!";
+            document.getElementById("formCamera").reset();
+            listarCameras(); // Atualiza a listagem na tela
+        } else {
+            msgElement.style.color = "red";
+            msgElement.innerText = "Erro ao salvar câmera.";
+        }
+    } catch (error) {
+        console.error("Erro:", error);
     }
+});
 
-    else{
+// Busca e renderiza as câmeras cadastradas
+async function listarCameras() {
+    const lista = document.getElementById("listaCameras");
+    lista.innerHTML = "";
 
-        btnCadastrar.disabled=false;
+    try {
+        const response = await fetch(API_CAMERA_URL);
+        const cameras = await response.json();
 
-        btnCadastrar.innerHTML=
-        'CADASTRAR';
-
+        cameras.forEach(cam => {
+            const li = document.createElement("li");
+            li.innerHTML = `<strong>${cam.nomeCamera}</strong> - Loc: ${cam.localizacao} | Limite: ${cam.temperaturaMaxima}°C | Status: <span class="status-${cam.status.toLowerCase()}">${cam.status}</span>`;
+            lista.appendChild(li);
+        });
+    } catch (error) {
+        console.error("Erro ao listar câmeras:", error);
     }
-
 }
 
-
-form.addEventListener(
-
-"submit",
-
-async(event)=>{
-
-event.preventDefault();
-
-const camara={
-
-nome:
-document
-.getElementById("nome")
-.value
-.trim(),
-
-local:
-document
-.getElementById("local")
-.value
-.trim(),
-
-temperaturaMinima:
-parseFloat(
-document
-.getElementById("temperaturaMinima")
-.value
-),
-
-temperaturaMaxima:
-parseFloat(
-document
-.getElementById("temperaturaMaxima")
-.value
-),
-
-sensor:
-document
-.getElementById("sensor")
-.value
-.trim()
-
-};
-
-
-if(!camara.nome){
-
-mostrarMensagem(
-"Informe o nome da câmera",
-"erro"
-);
-
-return;
-
+// Função de Logout
+function logout() {
+    localStorage.removeItem("usuario");
+    window.location.href = "login.html";
 }
-
-if(!camara.local){
-
-mostrarMensagem(
-"Informe o local",
-"erro"
-);
-
-return;
-
-}
-
-
-if(
-
-isNaN(
-camara.temperaturaMinima
-)
-
-){
-
-mostrarMensagem(
-"Informe temperatura mínima",
-"erro"
-);
-
-return;
-
-}
-
-
-if(
-
-isNaN(
-camara.temperaturaMaxima
-)
-
-){
-
-mostrarMensagem(
-"Informe temperatura máxima",
-"erro"
-);
-
-return;
-
-}
-
-
-try{
-
-alterarBotao(true);
-
-console.log(
-"Enviando:",
-camara
-);
-
-
-const response=
-
-await fetch(
-
-API_URL,
-
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":
-"application/json"
-
-},
-
-body:
-JSON.stringify(
-camara
-)
-
-}
-
-);
-
-
-if(response.ok){
-
-const dados=
-await response.json();
-
-console.log(
-dados
-);
-
-mostrarMensagem(
-"Câmara cadastrada com sucesso",
-"sucesso"
-);
-
-form.reset();
-
-}
-
-else{
-
-const erro=
-await response.text();
-
-console.log(
-erro
-);
-
-mostrarMensagem(
-"Erro: "+erro,
-"erro"
-);
-
-}
-
-}
-
-catch(error){
-
-console.error(error);
-
-mostrarMensagem(
-
-"Erro ao conectar ao backend",
-
-"erro"
-
-);
-
-}
-
-finally{
-
-alterarBotao(false);
-
-}
-
-}
-
-);

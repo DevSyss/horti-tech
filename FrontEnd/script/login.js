@@ -1,117 +1,43 @@
-const form = document.getElementById("loginForm");
+const API_URL = "http://localhost:8080/api/usuarios";
 
-const botao =
-    document.getElementById("btnEntrar");
+document.getElementById("formLogin").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-form.addEventListener(
-    "submit",
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+    const msgElement = document.getElementById("mensagem");
 
-    async function(event) {
+    const dadosLogin = { email, senha };
 
-        // impede reload
-        event.preventDefault();
+    try {
+        const response = await fetch(`${API_URL}/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dadosLogin)
+        });
 
-        // loading
-        botao.innerHTML = "ENTRANDO...";
-        botao.disabled = true;
-
-        // pega email
-        const email =
-            document
-            .getElementById("email")
-            .value
-            .trim();
-
-        // pega senha
-        const senha =
-            document
-            .getElementById("senha")
-            .value
-            .trim();
-
-        // objeto login
-        const usuarioLogin = {
-
-            email: email,
-            senha: senha
-
-        };
-
-        console.log(usuarioLogin);
-
-        try {
-
-            // REQUISIÇÃO
-            const response =
-                await fetch(
-                    "http://localhost:8080/usuarios",
-
-                    {
-
-                        method: "POST",
-
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
-
-                        body: JSON.stringify(
-                            usuarioLogin
-                        )
-
-                    }
-                );
-
-            // LOGIN OK
-            if (response.ok) {
-
-                const usuario =
-                    await response.json();
-
-                console.log(usuario);
-
-                // salva login
-                localStorage.setItem(
-                    "usuarioLogado",
-
-                    JSON.stringify(usuario)
-                );
-
-                alert(
-                    "Login realizado com sucesso!"
-                );
-
-                // REDIRECIONA
-                window.location.replace(
-                    "index.html"
-                );
-
-            }
-
-            // LOGIN ERRO
-            else {
-
-                alert(
-                    "Email ou senha inválidos!"
-                );
-            }
-
+        if (response.ok) {
+            const usuarioLogado = await response.json();
+            
+            // Salva dados no localStorage para persistência de sessão
+            localStorage.setItem("usuario", JSON.stringify(usuarioLogado));
+            
+            msgElement.style.color = "green";
+            msgElement.innerText = "Login bem-sucedido!";
+            
+            setTimeout(() => {
+                window.location.href = "dashboard.html";
+            }, 1000);
+        } else {
+            const data = await response.json();
+            msgElement.style.color = "red";
+            msgElement.innerText = data.message || "Credenciais inválidas.";
         }
-
-        // ERRO SERVIDOR
-        catch(error) {
-
-            console.error(error);
-
-            alert(
-                "Erro ao conectar com backend!"
-            );
-        }
-
-        // volta botão
-        botao.innerHTML = "ENTRAR";
-
-        botao.disabled = false;
-
+    } catch (error) {
+        console.error("Erro na requisição:", error);
+        msgElement.style.color = "red";
+        msgElement.innerText = "Erro ao conectar com o servidor.";
     }
-);
+});
