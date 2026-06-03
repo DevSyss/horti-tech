@@ -3,24 +3,18 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<title>HortiTech - Cadastro Colaborador</title>
 
-    <title>HortiTech - Cadastro</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+rel="stylesheet">
 
-    <!-- ICONS -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <!-- FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-          rel="stylesheet">
-
-    <!-- CSS -->
-    <link rel="stylesheet"
-          href="/css/cadastro.css">
+<link rel="stylesheet" href="/css/cadastro.css">
 
 </head>
 
@@ -28,137 +22,157 @@
 
 <div class="glass-background"></div>
 
-<main class="main-container">
+<main class="main-container animate-pop-in">
 
-    <!-- ESQUERDA -->
-    <section class="left-side">
+<section class="left-side">
 
-        <div class="content-wrapper">
+<div class="content-wrapper">
 
-            <div class="logo-area">
+<div class="logo-area">
+<i class="fa-solid fa-leaf"></i>
+<span>HortiTech</span>
+</div>
 
-                <i class="fa-solid fa-leaf"></i>
+<h1>
 
-                <span>HortiTech</span>
+CADASTRE <br>
 
-            </div>
+<span class="highlight">
+COLABORADORES
+</span>
 
-            <h1>
+</h1>
 
-                BEM-VINDO <br>
+<p>
+Gerencie sua equipe com tecnologia e segurança.
+</p>
 
-                <span class="highlight">
-                    DE VOLTA!
-                </span>
+<a href="/pages/login.html">
 
-            </h1>
+<button
+type="button"
+class="btn-outline">
 
-            <p>
-                Gerencie sua produção com inteligência tecnológica.
-            </p>
+LOGIN
 
-            <a href="login.html">
+</button>
 
-                <button
-                        class="btn-outline"
-                        type="button"
-                >
-                    LOGIN
-                </button>
+</a>
 
-            </a>
+</div>
 
-        </div>
+</section>
 
-    </section>
+<section class="right-side">
 
-    <!-- DIREITA -->
-    <section class="right-side">
+<div class="card-cadastro">
 
-        <div class="card-cadastro">
+<div class="avatar-circle">
 
-            <div class="avatar-circle">
+<i class="fa-solid fa-circle-user"></i>
 
-                <i class="fa-solid fa-circle-user"></i>
+</div>
 
-            </div>
+<form id="cadastroForm">
 
-            <!-- FORM -->
-            <form id="cadastroForm">
+<div class="input-group">
 
-                <!-- NOME -->
-                <div class="input-group">
+<i class="fa-solid fa-user"></i>
 
-                    <i class="fa-solid fa-user"></i>
+<input
+type="text"
+id="nome"
+placeholder="NOME COMPLETO"
+required>
 
-                    <input
-                            type="text"
-                            id="nome"
-                            placeholder="NOME COMPLETO"
-                            required
-                    >
+</div>
 
-                </div>
 
-                <!-- CPF -->
-                <div class="input-group">
+<div class="input-group">
 
-                    <i class="fa-solid fa-address-card"></i>
+<i class="fa-solid fa-address-card"></i>
 
-                    <input
-                            type="text"
-                            id="cpf"
-                            placeholder="CPF"
-                            required
-                    >
+<input
+type="text"
+id="cpf"
+placeholder="CPF"
+maxlength="14"
+required>
 
-                </div>
+</div>
 
-                <!-- EMAIL -->
-                <div class="input-group">
 
-                    <i class="fa-solid fa-envelope"></i>
+<div class="input-group">
 
-                    <input
-                            type="email"
-                            id="email"
-                            placeholder="E-MAIL"
-                            required
-                    >
+<i class="fa-solid fa-envelope"></i>
 
-                </div>
+<input
+type="email"
+id="email"
+placeholder="E-MAIL"
+required>
 
-                <!-- SENHA -->
-                <div class="input-group">
+</div>
 
-                    <i class="fa-solid fa-lock"></i>
 
-                    <input
-                            type="password"
-                            id="senha"
-                            placeholder="SENHA"
-                            required
-                    >
+<div class="input-group">
 
-                </div>
+<i class="fa-solid fa-lock"></i>
 
-                <!-- BOTÃO -->
-                <button
-                        type="submit"
-                        class="btn-main"
-                >
-                    CADASTRAR
-                </button>
+<input
+type="password"
+id="senha"
+placeholder="SENHA"
+required>
 
-            </form>
+</div>
 
-        </div>
 
-    </section>
+<div class="input-group">
+
+<i class="fa-solid fa-user-tag"></i>
+
+<select
+id="tipo"
+required>
+
+<option value="">
+TIPO DE USUÁRIO
+</option>
+
+<option value="Administrador">
+Administrador
+</option>
+
+<option value="Gestor">
+Gestor
+</option>
+
+<option value="Funcionário">
+Funcionário
+</option>
+
+</select>
+
+</div>
+
+<button
+type="submit"
+class="btn-main"
+id="btnCadastrar">
+
+CADASTRAR
+
+</button>
+
+</form>
+
+</div>
+
+</section>
 
 </main>
 
-<!-- JS -->
 <script src="/script/cadastro.js"></script>
 
 </body>

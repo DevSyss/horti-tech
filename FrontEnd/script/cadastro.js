@@ -1,95 +1,175 @@
 const form =
-    document.getElementById(
-        "cadastroForm"
-    );
+document.getElementById(
+"cadastroForm"
+);
+
+const botao =
+document.getElementById(
+"btnCadastrar"
+);
+
+
+// MÁSCARA CPF
+
+document
+.getElementById("cpf")
+.addEventListener(
+
+"input",
+
+(e)=>{
+
+let value=
+e.target.value.replace(
+    /\D/g,
+''
+);
+
+value=value.replace(
+/(\d{3})(\d)/,
+'$1.$2'
+);
+
+value=value.replace(
+/(\d{3})(\d)/,
+'$1.$2'
+);
+
+value=value.replace(
+/(\d{3})(\d{1,2})$/,
+'$1-$2'
+);
+
+e.target.value=value;
+
+});
+
+
 
 form.addEventListener(
-    "submit",
 
-    async (event) => {
+"submit",
 
-        event.preventDefault();
+async(event)=>{
 
-        // DADOS
-        const colaborador = {
+event.preventDefault();
 
-            nome:
-                document.getElementById("nome").value,
+botao.innerText=
+"CADASTRANDO...";
 
-            cpf:
-                document.getElementById("cpf").value,
+botao.disabled=true;
 
-            email:
-                document.getElementById("email").value,
+const colaborador={
 
-            senha:
-                document.getElementById("senha").value
-        };
+nome:
+document
+.getElementById(
+"nome"
+)
+.value.trim(),
 
-        console.log(colaborador);
+cpf:
+document
+.getElementById(
+"cpf"
+)
+.value.trim(),
 
-        try {
+email:
+document
+.getElementById(
+"email"
+)
+.value.trim(),
 
-            const response =
-                await fetch(
+senha:
+document
+.getElementById(
+"senha"
+)
+.value.trim(),
 
-                    "http://localhost:8080/api/colaboradores",
+tipo:
+document
+.getElementById(
+"tipo"
+)
+.value
 
-                    {
+};
 
-                        method: "POST",
+console.log(colaborador);
 
-                        headers: {
+try{
 
-                            "Content-Type":
-                                "application/json"
-                        },
+const response=
+await fetch(
 
-                        body:
-                            JSON.stringify(colaborador)
-                    }
-                );
+"http://localhost:8080/colaboradores",
 
-            // SUCESSO
-            if(response.ok) {
+{
 
-                const data =
-                    await response.json();
+method:"POST",
 
-                console.log(data);
+headers:{
 
-                alert(
-                    "Cadastro realizado com sucesso!"
-                );
+"Content-Type":
+"application/json"
 
-                // REDIRECIONA
-                window.location.href =
-                    "login.html";
-            }
+},
 
-            // ERRO
-            else {
+body:
+JSON.stringify(
+colaborador
+)
 
-                const erro =
-                    await response.text();
+}
 
-                console.log(erro);
-
-                alert(
-                    "Erro ao cadastrar!"
-                );
-            }
-
-        }
-
-        catch(error) {
-
-            console.log(error);
-
-            alert(
-                "Erro ao conectar com backend!"
-            );
-        }
-
-    }
 );
+
+if(response.ok){
+
+const data=
+await response.json();
+
+console.log(data);
+
+alert(
+"Colaborador cadastrado com sucesso!"
+);
+
+form.reset();
+
+window.location.href=
+"login.html";
+
+}else{
+
+const erro=
+await response.text();
+
+console.log(erro);
+
+alert(
+"Erro ao cadastrar:\n"+
+erro
+);
+
+}
+
+}catch(error){
+
+console.log(error);
+
+alert(
+"Erro ao conectar ao backend"
+);
+
+}
+
+botao.innerText=
+"CADASTRAR";
+
+botao.disabled=false;
+
+});
