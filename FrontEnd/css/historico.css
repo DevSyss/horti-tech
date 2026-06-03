@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background-color: #f7f9f6; /* Fundo levemente esverdeado/cinza */
+    color: #334155;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 300px;
+    background: transparent;
+    padding: 40px 30px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 60px;
+}
+
+.logo-box {
+    background: #88a070;
+    padding: 12px;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+.logo-text h1 {
+    font-size: 1.2rem;
+    color: #1a2e1c;
+    font-weight: 800;
+}
+
+.logo-text span {
+    font-size: 0.7rem;
+    color: #94a3b8;
+}
+
+.nav-item {
+    list-style: none;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    border-radius: 18px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #64748b;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-item.active {
+    background-color: #88a070;
+    color: white;
+    box-shadow: 0 10px 20px rgba(136, 160, 112, 0.2);
+}
+
+/* CONTEÚDO */
+.content {
+    flex: 1;
+    padding: 50px 80px 50px 20px;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.top-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1e293b;
+}
+
+.top-header p {
+    color: #94a3b8;
+    margin-top: 5px;
+}
+
+.system-status {
+    background: white;
+    padding: 12px 25px;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: #4ade80;
+    border-radius: 50%;
+}
+
+/* CARDS DE GRÁFICO */
+.chart-section {
+    margin-bottom: 50px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    padding: 12px 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    outline: none;
+    background: white;
+}
+
+button {
+    background: #88a070;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover { background: #6b7e58; }
+
+.chart-card {
+    background: white;
+    padding: 40px;
+    border-radius: 40px; /* Bordas bem arredondadas como na imagem */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.02);
+    height: 400px;
+}

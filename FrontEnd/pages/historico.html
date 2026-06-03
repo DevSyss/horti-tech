@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HortiTech | Histórico</title>
+    <link rel="stylesheet" href="/css/historico.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-box">🍃</div>
+                <div class="logo-text">
+                    <h1>HortiTech</h1>
+                    <span>Monitoramento Inteligente</span>
+                </div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li class="nav-item">📡 MONITORAMENTO</li>
+                    <li class="nav-item active">📈 HISTÓRICO</li>
+                    <li class="nav-item">🚨 ALERTAS</li>
+                    <li class="nav-item">📋 INFORMAÇÕES GERAIS</li>
+                    <li class="nav-item">💬 SUPORTE</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <header class="top-header">
+                <div class="title-group">
+                    <h1>Painel de Monitoramento</h1>
+                    <p>Controle inteligente de temperatura e umidade</p>
+                </div>
+                <div class="system-status">
+                    <span class="dot"></span> Sistema Online
+                </div>
+            </header>
+
+            <section class="chart-section">
+                <div class="section-header">
+                    <h2>Histórico de Temperatura (°C)</h2>
+                    <div class="input-group">
+                        <input type="number" id="tempInput" placeholder="Nova temperatura">
+                        <button onclick="updateChart(tempChart, 'tempInput')">Atualizar</button>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <canvas id="tempChart"></canvas>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <div class="section-header">
+                    <h2>Histórico de Umidade (%)</h2>
+                    <div class="input-group">
+                        <input type="number" id="umidInput" placeholder="Nova umidade">
+                        <button onclick="updateChart(umidChart, 'umidInput')">Atualizar</button>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <canvas id="umidChart"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/script/historico.js"></script>
+</body>
+</html>
