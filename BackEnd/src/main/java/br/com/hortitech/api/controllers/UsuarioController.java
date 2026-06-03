@@ -20,7 +20,7 @@ import br.com.hortitech.api.services.UsuarioServices;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios")
 // @CrossOrigin("*")
 public class UsuarioController {
 
