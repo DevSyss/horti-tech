@@ -1,179 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>HortiTech - Cadastro Colaborador</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-<link rel="stylesheet" href="/css/cadastro.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HortiTech - Cadastro Colaborador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/cadastro.css">
 </head>
-
 <body>
+    <div class="glass-background"></div>
+    <main class="main-container animate-pop-in">
+        <section class="left-side">
+            <div class="content-wrapper">
+                <div class="logo-area">
+                    <i class="fa-solid fa-leaf"></i>
+                    <span>HortiTech</span>
+                </div>
+                <h1>CADASTRE <br><span class="highlight">COLABORADORES</span></h1>
+                <p>Gerencie sua equipe com tecnologia e segurança.</p>
+                <a href="/pages/login.html">
+                    <button type="button" class="btn-outline">LOGIN</button>
+                </a>
+            </div>
+        </section>
 
-<div class="glass-background"></div>
+        <section class="right-side">
+            <div class="card-cadastro">
+                <div class="avatar-circle">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+                <form id="cadastroForm">
+                    <div class="input-group">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="nome" placeholder="NOME COMPLETO" required>
+                    </div>
 
-<main class="main-container animate-pop-in">
+                    <div class="input-group">
+                        <i class="fa-solid fa-address-card"></i>
+                        <input type="text" id="cpf" placeholder="CPF" maxlength="14" required>
+                    </div>
 
-<section class="left-side">
+                    <div class="input-group">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="email" placeholder="E-MAIL" required>
+                    </div>
 
-<div class="content-wrapper">
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="senha" placeholder="SENHA" required>
+                    </div>
 
-<div class="logo-area">
-<i class="fa-solid fa-leaf"></i>
-<span>HortiTech</span>
-</div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-user-tag"></i>
+                        <select id="tipo" required>
+                            <option value="">TIPO DE USUÁRIO</option>
+                            <option value="CHEFE">Chefe</option>
+                            <option value="FUNCIONARIO">Funcionário</option>
+                        </select>
+                    </div>
 
-<h1>
-
-CADASTRE <br>
-
-<span class="highlight">
-COLABORADORES
-</span>
-
-</h1>
-
-<p>
-Gerencie sua equipe com tecnologia e segurança.
-</p>
-
-<a href="/pages/login.html">
-
-<button
-type="button"
-class="btn-outline">
-
-LOGIN
-
-</button>
-
-</a>
-
-</div>
-
-</section>
-
-<section class="right-side">
-
-<div class="card-cadastro">
-
-<div class="avatar-circle">
-
-<i class="fa-solid fa-circle-user"></i>
-
-</div>
-
-<form id="cadastroForm">
-
-<div class="input-group">
-
-<i class="fa-solid fa-user"></i>
-
-<input
-type="text"
-id="nome"
-placeholder="NOME COMPLETO"
-required>
-
-</div>
-
-
-<div class="input-group">
-
-<i class="fa-solid fa-address-card"></i>
-
-<input
-type="text"
-id="cpf"
-placeholder="CPF"
-maxlength="14"
-required>
-
-</div>
-
-
-<div class="input-group">
-
-<i class="fa-solid fa-envelope"></i>
-
-<input
-type="email"
-id="email"
-placeholder="E-MAIL"
-required>
-
-</div>
-
-
-<div class="input-group">
-
-<i class="fa-solid fa-lock"></i>
-
-<input
-type="password"
-id="senha"
-placeholder="SENHA"
-required>
-
-</div>
-
-
-<div class="input-group">
-
-<i class="fa-solid fa-user-tag"></i>
-
-<select
-id="tipo"
-required>
-
-<option value="">
-TIPO DE USUÁRIO
-</option>
-
-<option value="Administrador">
-Administrador
-</option>
-
-<option value="Gestor">
-Gestor
-</option>
-
-<option value="Funcionário">
-Funcionário
-</option>
-
-</select>
-
-</div>
-
-<button
-type="submit"
-class="btn-main"
-id="btnCadastrar">
-
-CADASTRAR
-
-</button>
-
-</form>
-
-</div>
-
-</section>
-
-</main>
-
-<script src="/script/cadastro.js"></script>
-
+                    <button type="submit" class="btn-main" id="btnCadastrar">CADASTRAR</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="/script/cadastro.js"></script>
 </body>
 </html>
