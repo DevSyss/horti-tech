@@ -25,7 +25,7 @@ public class CorsConfig implements WebMvcConfigurer {
 		source.registerCorsConfiguration("/api/camaraFria", config);
 		source.registerCorsConfiguration("/api/colaboradores", config);
 		source.registerCorsConfiguration("/api/registroTermico", config);
-		source.registerCorsConfiguration("/api/usuarios", config);
+		source.registerCorsConfiguration("/api/usuarios/**", config);
 
 		return new CorsFilter((CorsConfigurationSource) source);
 	}
