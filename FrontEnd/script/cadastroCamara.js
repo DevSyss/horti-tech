@@ -6,10 +6,10 @@ formCadastro.addEventListener("submit", async function(event) {
 
     const camaraFria = {
         nome: document.getElementById("nome").value.trim(),
-        cpf: document.getElementById("local").value.trim(),
-        email: document.getElementById("temperaturaMinima").value.trim(),
-        senha: document.getElementById("temperaturaMaxima").value.trim(),
-        tipo: document.getElementById("sensor").value
+        local: document.getElementById("local").value.trim(),
+        temperaturaMinima: document.getElementById("temperaturaMinima").value.trim(),
+        temperaturaMaxima: document.getElementById("temperaturaMaxima").value.trim(),
+        sensor: document.getElementById("sensor").value
     };
 
     try {
@@ -21,6 +21,8 @@ formCadastro.addEventListener("submit", async function(event) {
             },
             body: JSON.stringify(camaraFria)
         });
+
+        
 
         if (resposta.ok) {
 
@@ -50,3 +52,5 @@ formCadastro.addEventListener("submit", async function(event) {
         alert("Não foi possível conectar ao servidor.");
     }
 });
+
+
