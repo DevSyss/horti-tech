@@ -3,221 +3,161 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>HortiTech • Informações Gerais</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
-  <!-- CSS -->
   <link rel="stylesheet" href="/css/informacoes.css">
 </head>
-
 <body>
 
-<div class="app">
+<div class="app-wrapper">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-
-    <div class="logo">
-
-      <div class="logo-icon">
+  <aside class="side-navigation">
+    <div class="nav-brand">
+      <div class="logo-circle">
         <i class="fa-solid fa-leaf"></i>
       </div>
-
-      <h2>HortiTech</h2>
-
+      <span>HortiTech</span>
     </div>
 
-    <nav class="menu">
-
-      <a href="#">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Monitoramento</span>
+    <nav class="nav-menu">
+      <a href="/index.html" class="nav-link">
+        <i class="fa-solid fa-gauge-high"></i>
+        <span>MONITORAMENTO</span>
       </a>
-
-      <a href="#">
+      <a href="/pages/historico.html" class="nav-link">
         <i class="fa-solid fa-clock-rotate-left"></i>
-        <span>Histórico</span>
+        <span>HISTÓRICO</span>
       </a>
-
-      <a href="#">
+      <a href="/pages/alerta.html" class="nav-link">
         <i class="fa-solid fa-bell"></i>
-        <span>Alertas</span>
+        <span>ALERTAS</span>
       </a>
-
-      <a href="#" class="active">
+      
+      <div class="nav-item-separator">SISTEMA</div>
+      
+      <a href="/pages/informacoes.html" class="nav-link active">
         <i class="fa-solid fa-circle-info"></i>
-        <span>Informações</span>
+        <span>INFORMAÇÕES<br><small>GERAIS</small></span>
       </a>
-
-      <a href="#" class="support">
+      
+      <a href="/pages/suporte.html" class="nav-link">
         <i class="fa-solid fa-headset"></i>
-        <span>Suporte</span>
+        <span>SUPORTE</span>
       </a>
-
     </nav>
 
+    <div class="nav-footer">
+      <div class="status-indicator">
+        <div class="dot"></div>
+        <span>Online</span>
+      </div>
+    </div>
   </aside>
 
-  <!-- MAIN -->
-  <main class="main">
-
-    <div class="topbar">
-
-      <div class="title">
-        <h1>Informações Gerais</h1>
-        <p>Painel completo do sistema de monitoramento</p>
+  <main class="main-viewport">
+    
+    <header class="content-header">
+      <div class="breadcrumb">
+        <span>Sistema</span>
+        <i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i>
+        <strong>Informações Gerais</strong>
       </div>
 
-      <div class="status">
-
-        <div class="dot"></div>
-
-        <span>Sistema Online</span>
-
+      <div class="user-profile">
+        <span class="user-name">Admin</span>
+        <div class="avatar"></div>
       </div>
+    </header>
 
-    </div>
+    <div class="scrollable-content">
+      <h1 class="main-heading">Informações <span class="highlight">Gerais</span></h1>
 
-    <div class="dashboard">
-
-      <!-- LEFT -->
-      <div>
-
-        <!-- CARD 1 -->
-        <section class="card">
-
-          <div class="card-header">
-
-            <div class="card-title">
-
-              <div class="icon">
-                <i class="fa-solid fa-warehouse"></i>
-              </div>
-
-              <div>
+      <div class="dashboard-grid">
+        
+        <div>
+          <section class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <div class="icon">
+                  <i class="fa-solid fa-warehouse"></i>
+                </div>
                 <h2>Câmara 01 • São Paulo</h2>
               </div>
-
+              <div class="tag">ATIVA</div>
             </div>
 
-            <div class="tag">
-              ATIVA
-            </div>
-
-          </div>
-
-          <div class="info-grid">
-
-            <div class="info-box">
-              <span>Temperatura Máxima</span>
-              <strong>11°C</strong>
-            </div>
-
-            <div class="info-box">
-              <span>Temperatura Mínima</span>
-              <strong>1°C</strong>
-            </div>
-
-            <div class="info-box">
-              <span>Umidade</span>
-              <strong>74%</strong>
-            </div>
-
-          </div>
-
-        </section>
-
-        <section class="card">
-
-          <div class="card-header">
-
-            <div class="card-title">
-
-              <div class="icon">
-                <i class="fa-solid fa-microchip"></i>
+            <div class="info-grid">
+              <div class="info-box">
+                <span>Temperatura Máxima</span>
+                <strong>11°C</strong>
               </div>
+              <div class="info-box">
+                <span>Temperatura Mínima</span>
+                <strong>1°C</strong>
+              </div>
+              <div class="info-box">
+                <span>Umidade</span>
+                <strong>74%</strong>
+              </div>
+            </div>
+          </section>
 
-              <div>
+          <section class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <div class="icon">
+                  <i class="fa-solid fa-microchip"></i>
+                </div>
                 <h2>ESP32 • Dispositivo Principal</h2>
               </div>
-
+              <div class="tag">ONLINE</div>
             </div>
 
-            <div class="tag">
-              ONLINE
+            <div class="info-grid">
+              <div class="info-box">
+                <span>ID do Dispositivo</span>
+                <strong>1234567</strong>
+              </div>
+              <div class="info-box">
+                <span>Status</span>
+                <strong>Ativa</strong>
+              </div>
+              <div class="info-box">
+                <span>Localização</span>
+                <strong>Sorocaba</strong>
+              </div>
             </div>
+          </section>
+        </div>
 
+        <aside>
+          <div class="side-card">
+            <h3>Sensores Online</h3>
+            <strong>92%</strong>
+            <div class="progress">
+              <div></div>
+            </div>
           </div>
 
-          <div class="info-grid">
-
-            <div class="info-box">
-              <span>ID do Dispositivo</span>
-              <strong>1234567</strong>
-            </div>
-
-            <div class="info-box">
-              <span>Status</span>
-              <strong>Ativa</strong>
-            </div>
-
-            <div class="info-box">
-              <span>Localização</span>
-              <strong>Sorocaba</strong>
-            </div>
-
+          <div class="side-card">
+            <h3>Alertas Hoje</h3>
+            <strong>12</strong>
           </div>
 
-        </section>
+          <div class="side-card">
+            <h3>Última Atualização</h3>
+            <strong class="time">14:32</strong>
+          </div>
+        </aside>
 
       </div>
-
-      <aside>
-
-        <div class="side-card">
-
-          <h3>Sensores Online</h3>
-
-          <strong>92%</strong>
-
-          <div class="progress">
-            <div></div>
-          </div>
-
-        </div>
-
-        <div class="side-card">
-
-          <h3>Alertas Hoje</h3>
-
-          <strong>12</strong>
-
-        </div>
-
-        <div class="side-card">
-
-          <h3>Última Atualização</h3>
-
-          <strong class="time">
-            14:32
-          </strong>
-
-        </div>
-
-      </aside>
-
     </div>
-
   </main>
 
 </div>

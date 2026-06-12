@@ -1,42 +1,74 @@
-const form = document.getElementById("cadastroForm");
-const botao = document.getElementById("btnCadastrar");
+// ==========================================
+// CADASTRO DE COLABORADOR
+// ==========================================
 
-form.addEventListener("submit", async (event) => {
+const formCadastro = document.getElementById("cadastroForm");
+
+formCadastro.addEventListener("submit", async function(event) {
+
     event.preventDefault();
 
-    botao.innerText = "CADASTRANDO...";
-    botao.disabled = true;
-
-    // Monta o objeto idêntico à classe Usuario.java do seu backend
-    const usuario = {
+    const colaborador = {
+        nome: document.getElementById("nome").value.trim(),
+        cpf: document.getElementById("cpf").value.trim(),
         email: document.getElementById("email").value.trim(),
         senha: document.getElementById("senha").value.trim(),
-        tipo: document.getElementById("tipo").value // Deve enviar 'CHEFE' ou 'FUNCIONARIO'
+        tipo: document.getElementById("tipo").value
     };
 
     try {
-        // Envia para o endpoint correto: UsuarioController -> @PostMapping("/cadastro")
-        const response = await fetch("http://localhost:8080/api/usuarios/cadastro", {
+
+        const resposta = await fetch("http://localhost:8080/api/colaboradores", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(usuario)
+            body: JSON.stringify(colaborador)
         });
 
-        if (response.ok) {
-            alert("Usuário cadastrado com sucesso!");
-            form.reset();
-            window.location.href = "login.html"; // Vai para a tela de login
+        if (resposta.ok) {
+
+            const dados = await resposta.json();
+
+            console.log("Colaborador cadastrado:", dados);
+
+            alert("Colaborador cadastrado com sucesso!");
+
+            formCadastro.reset();
+
+            window.location.href = "/pages/login.html";
+
         } else {
-            const erroTexto = await response.text();
-            alert("Erro nas validações do sistema:\n" + erroTexto);
+
+            const erro = await resposta.text();
+
+            console.error("Erro:", erro);
+
+            alert("Erro ao cadastrar colaborador.\n" + erro);
         }
-    } catch (error) {
-        console.error("Erro de rede:", error);
-        alert("Erro ao conectar com o servidor.");
-    } finally {
-        botao.innerText = "CADASTRAR";
-        botao.disabled = false;
+
+    } catch (erro) {
+
+        console.error("Erro de conexão:", erro);
+
+        alert("Não foi possível conectar ao servidor.");
     }
+});
+
+
+// ==========================================
+// MÁSCARA CPF
+// ==========================================
+
+const cpfInput = document.getElementById("cpf");
+
+cpfInput.addEventListener("input", function(e) {
+
+    let valor = e.target.value.replace(/\D/g, "");
+
+    valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+    valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+    valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+    e.target.value = valor;
 });

@@ -1,79 +1,39 @@
-const form = document.getElementById("loginForm");
-const botao = document.getElementById("btnEntrar");
+const formLogin = document.getElementById("loginForm");
+const mensagemErro = document.getElementById("mensagem-erro");
 
-form.addEventListener("submit", async (event) => {
-    event.preventDefault(); // Impede o recarregamento da página
+formLogin.addEventListener("submit", async function(event){
+    // Evita que o navegador recarregue a página ao clicar no botão "Entrar"
+    event.preventDefault();
 
-    // Feedback visual
-    botao.innerText = "VERIFICANDO...";
-    botao.disabled = true;
-
-    const emailInput = document.getElementById("email").value.trim();
-    const senhaInput = document.getElementById("senha").value.trim();
-    
-    // Captura o valor do cargo selecionado (CHEFE ou FUNCIONARIO)
-    const perfilInput = document.querySelector('input[name="perfil"]:checked').value;
-
-    // Monta o JSON combinando perfeitamente com os atributos da sua classe Usuario.java
-    const dadosLogin = {
-        email: emailInput,
-        senha: senhaInput,
-        tipo: perfilInput
-    };
-
-    console.log("Tentando realizar login para:", emailInput);
+    // Captura os valores digitados nos inputs
+    const emailInput = document.getElementById("email").value;
+    const senhaInput = document.getElementById("senha").value;
 
     try {
-        // Efetuando a requisição para a porta do Spring Boot (8080)
-        const response = await fetch("http://localhost:8080/api/usuarios/login", {
+        // Dispara um POST enviando o login e senha no "corpo" (body) da requisição
+        const resposta = await fetch("http://localhost:8080/api/usuarios/login", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(dadosLogin)
+            headers: { "Content-Type": "application/json" }, // Avisa que estamos a enviar um JSON
+            body: JSON.stringify({
+                email: emailInput,
+                senha: senhaInput,
+            })
         });
 
-        // Se o login der certo (Status 200)
-        if (response.ok) {
-            const textoResposta = await response.text();
-            
-            // Verifica se o Spring não devolveu uma resposta vazia
-            if (!textoResposta) {
-                alert("Erro: O servidor validou suas credenciais, mas retornou dados vazios.");
-                return;
-            }
+        // Se a API retornar um status de sucesso (200 OK)
+        if (resposta.ok) {
+            const dadosUsuario = await resposta.json();
 
-            const usuarioLogado = JSON.parse(textoResposta);
-            console.log("Usuário autenticado com sucesso:", usuarioLogado);
+            // Grava os dados do usuário na memória do navegador (localStorage)
+            localStorage.setItem("usuarioSessao", JSON.stringify(dadosUsuario));
 
-            // Salva na sessão do navegador para usar nas próximas páginas
-            sessionStorage.setItem("usuario", JSON.stringify(usuarioLogado));
-            alert("Login realizado com sucesso!");
-
-            // Redirecionamento baseado no cargo salvo no banco de dados
-            if (usuarioLogado.tipo === "CHEFE") {
-                window.location.href = "dashboard_chefe.html";
-            } else {
-                window.location.href = "dashboard_funcionario.html";
-            }
-
+            // Redireciona o utilizador para a tela de administração
+            window.location.href = "cadastro.html";
         } else {
-            // Se o backend recusar as credenciais (Retornos 401, 404, etc.)
-            let mensagem = "E-mail ou senha incorretos.";
-            try {
-                const erroJson = await response.json();
-                if (erroJson.message) mensagem = erroJson.message;
-            } catch (e) {
-                // Caso não seja um JSON, não quebra a tela
-            }
-            alert("Falha ao entrar: " + mensagem);
+            mensagemErro.innerText = "Usuário ou senha inválidos!";
         }
-
-    } catch (error) {
-        console.error("Erro na requisição:", error);
-        alert("Não foi possível conectar ao servidor. Certifique-se de que o Spring Boot está rodando em localhost:8080");
-    } finally {
-        botao.innerText = "ENTRAR";
-        botao.disabled = false;
+    } catch (erro) {
+        console.error(erro);
+        mensagemErro.innerText = "Erro ao conectar com o servidor.";
     }
 });
