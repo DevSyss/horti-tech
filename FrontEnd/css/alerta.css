@@ -1,4 +1,5 @@
 :root {
+  /* Paleta oficial HortiTech */
   --primary: #7BA05B;
   --primary-dark: #5F7E45;
   --bg: #F4F7F2;
@@ -6,14 +7,15 @@
   --white: #FFFFFF;
   --text: #1F2937;
   --muted: #6B7280;
-  --warning: #f59e0b; /* Mantido para alertas de atenção */
-  --danger: #ef4444;  /* Mantido para alertas críticos */
+  --warning: #f59e0b; 
+  --danger: #ef4444;  
+  --border: rgba(0, 0, 0, 0.05);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   --radius: 24px;
-  --shadow: 0 10px 30px rgba(0,0,0,0.06);
 }
 
 /* RESET E BASE */
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -26,16 +28,19 @@ body {
   min-height: 100vh;
 }
 
-.app {
+.app-wrapper {
   display: flex;
   min-height: 100vh;
 }
 
-/* SIDEBAR - Cores Iguais ao Primeiro */
-.sidebar {
+/* =========================================
+   SIDEBAR PADRONIZADA (PROPORÇÕES REAIS)
+========================================= */
+.side-navigation {
   width: 280px;
+  min-width: 280px;
   background: var(--sidebar);
-  border-right: 1px solid rgba(0,0,0,0.05);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
   padding: 40px 24px;
   display: flex;
   flex-direction: column;
@@ -44,14 +49,14 @@ body {
   height: 100vh;
 }
 
-.logo {
+.nav-brand {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 50px;
 }
 
-.logo-icon {
+.logo-circle {
   width: 48px;
   height: 48px;
   border-radius: 14px;
@@ -61,21 +66,23 @@ body {
   justify-content: center;
   color: white;
   font-size: 20px;
-  box-shadow: 0 8px 20px rgba(123,160,91,0.2);
+  box-shadow: 0 8px 20px rgba(123, 160, 91, 0.2);
 }
 
-.logo h2 {
+.nav-brand span {
   font-size: 22px;
   font-weight: 700;
 }
 
-.menu {
+/* MENU DE NAVEGAÇÃO (FONTES RESTAURADAS) */
+.nav-menu {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1;
 }
 
-.menu a {
+.nav-link {
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -83,52 +90,143 @@ body {
   padding: 14px 18px;
   border-radius: 16px;
   color: var(--muted);
-  font-weight: 500;
-  transition: all 0.3s ease;
+  
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  
+  transition: 0.3s ease;
 }
 
-.menu a:hover {
-  background: rgba(255,255,255,0.5);
+.nav-link i {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.nav-link span {
+  line-height: 1.3;
+}
+
+.nav-link span small {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.5);
   transform: translateX(5px);
   color: var(--primary-dark);
 }
 
-.menu a.active {
+/* Estado Ativo (Botão Arredondado Verde) */
+.nav-link.active {
   background: var(--primary);
   color: white;
-  box-shadow: 0 10px 20px rgba(123,160,91,0.2);
+  box-shadow: 0 10px 20px rgba(123, 160, 91, 0.2);
 }
 
-.support {
+.nav-item-separator {
+  margin: 24px 18px 8px;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* FOOTER DA SIDEBAR */
+.nav-footer {
   margin-top: auto;
 }
 
-/* MAIN CONTENT */
-.main-content {
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 10px 16px;
+  border-radius: 50px;
+  width: fit-content;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+}
+
+/* =========================================
+   CONTEÚDO PRINCIPAL (MAIN COMPONENT)
+========================================= */
+.main-viewport {
   flex: 1;
   padding: 40px;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
-/* TOPBAR */
-.topbar {
+/* BREADCRUMB TOPBAR */
+.content-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
 }
 
-.title-area h1 {
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  box-shadow: 0 8px 20px rgba(123, 160, 91, 0.2);
+}
+
+/* TÍTULOS */
+.scrollable-content {
+  width: 100%;
+}
+
+.main-heading {
   font-size: 32px;
   font-weight: 700;
 }
 
-.title-area p {
-  color: var(--muted);
-  font-size: 15px;
+.highlight {
+  color: var(--primary);
 }
 
+.sub-heading {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* AÇÕES / BUSCA */
 .topbar-actions {
   display: flex;
   gap: 12px;
@@ -142,6 +240,10 @@ body {
   padding: 12px 20px;
   border-radius: 50px;
   box-shadow: var(--shadow);
+}
+
+.search-box i {
+  color: var(--muted);
 }
 
 .search-box input {
@@ -178,7 +280,7 @@ body {
 .section-title {
   margin-bottom: 20px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -266,7 +368,7 @@ body {
 
 .btn-details {
   border: none;
-  background: var(--bg); /* Fundo cinza-verde igual aos boxes do anterior */
+  background: #F8FAF6; /* Fundo idêntico aos boxes de informações internos */
   color: var(--primary-dark);
   padding: 8px 20px;
   border-radius: 50px;
@@ -281,9 +383,9 @@ body {
   color: var(--white);
 }
 
-/* RESPONSIVO */
+/* RESPONSIVIDADE COMPATÍVEL */
 @media (max-width: 768px) {
-  .sidebar {
+  .side-navigation {
     width: 100%;
     height: 70px;
     position: fixed;
@@ -292,11 +394,17 @@ body {
     flex-direction: row;
     padding: 10px;
     z-index: 100;
+    border-right: none;
+    border-top: 1px solid rgba(0,0,0,0.05);
   }
-  .logo, .support { display: none; }
-  .menu { flex-direction: row; width: 100%; justify-content: space-around; }
-  .menu a { padding: 10px; flex-direction: column; font-size: 10px; gap: 4px; }
-  .main-content { padding: 20px; padding-bottom: 100px; }
+  
+  .nav-brand, .nav-footer, .nav-item-separator { display: none; }
+  .nav-menu { flex-direction: row; width: 100%; justify-content: space-around; gap: 0; }
+  .nav-link { padding: 10px; flex-direction: column; font-size: 10px; gap: 4px; border-radius: 12px;}
+  .nav-link i { font-size: 16px; }
+  .nav-link span br, .nav-link span small { display: none; }
+  
+  .main-viewport { padding: 20px; padding-bottom: 100px; }
   .alert-card { flex-direction: column; align-items: flex-start; gap: 20px; }
   .alert-side { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px; }
 }

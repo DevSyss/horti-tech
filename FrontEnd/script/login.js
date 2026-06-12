@@ -1,55 +1,39 @@
-const form = document.getElementById("loginForm");
-const botao = document.getElementById("btnEntrar");
+const formLogin = document.getElementById("loginForm");
+const mensagemErro = document.getElementById("mensagem-erro");
 
-form.addEventListener("submit", async (event) => {
+formLogin.addEventListener("submit", async function(event){
+    // Evita que o navegador recarregue a página ao clicar no botão "Entrar"
     event.preventDefault();
 
-    botao.innerText = "VERIFICANDO...";
-    botao.disabled = true;
-
-    const emailInput = document.getElementById("email").value.trim();
-    const senhaInput = document.getElementById("senha").value.trim();
-    
-    // Coleta a opção marcada no rádio button do HTML (name="perfil")
-    const perfilMarcado = document.querySelector('input[name="perfil"]:checked').value; 
-
-    // Mapeia o payload JSON correspondendo estritamente com os atributos da Entidade Java
-    const payload = {
-        email: emailInput,
-        senha: senhaInput,
-        tipo: perfilMarcado 
-    };
+    // Captura os valores digitados nos inputs
+    const emailInput = document.getElementById("email").value;
+    const senhaInput = document.getElementById("senha").value;
 
     try {
-        const response = await fetch("http://localhost:8080/api/colaboradores/login", {
+        // Dispara um POST enviando o login e senha no "corpo" (body) da requisição
+        const resposta = await fetch("http://localhost:8080/api/usuarios/login", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
+            headers: { "Content-Type": "application/json" }, // Avisa que estamos a enviar um JSON
+            body: JSON.stringify({
+                email: emailInput,
+                senha: senhaInput,
+            })
         });
 
-        if (response.ok) {
-            const colaboradorLogado = await response.json();
-            
-            // Grava na sessão local do navegador para futuras verificações de segurança
-            sessionStorage.setItem("usuario_logado", JSON.stringify(colaboradorLogado));
-            alert("Bem-vindo ao sistema HortiTech!");
+        // Se a API retornar um status de sucesso (200 OK)
+        if (resposta.ok) {
+            const dadosUsuario = await resposta.json();
 
-            if (colaboradorLogado.tipo === "CHEFE") {
-                window.location.href = "dashboard_chefe.html";
-            } else {
-                window.location.href = "dashboard_funcionario.html";
-            }
+            // Grava os dados do usuário na memória do navegador (localStorage)
+            localStorage.setItem("usuarioSessao", JSON.stringify(dadosUsuario));
+
+            // Redireciona o utilizador para a tela de administração
+            window.location.href = "cadastro.html";
         } else {
-            const erroMensagem = await response.text();
-            alert("Falha ao entrar: " + erroMensagem);
+            mensagemErro.innerText = "Usuário ou senha inválidos!";
         }
-    } catch (error) {
-        console.error("Erro na comunicação:", error);
-        alert("Erro de conexão: Não foi possível se comunicar com o servidor HortiTech.");
-    } finally {
-        botao.innerText = "ENTRAR";
-        botao.disabled = false;
+    } catch (erro) {
+        console.error(erro);
+        mensagemErro.innerText = "Erro ao conectar com o servidor.";
     }
 });

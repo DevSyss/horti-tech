@@ -15,90 +15,132 @@
 
 <body>
 
-<div class="app">
+<div class="app-wrapper">
 
-  <aside class="sidebar">
-    <div class="logo">
-      <div class="logo-icon">
-        <i class="fa-solid fa-seedling"></i>
+  <aside class="side-navigation">
+    <div class="nav-brand">
+      <div class="logo-circle">
+        <i class="fa-solid fa-leaf"></i>
       </div>
-      <h2>HortiTech</h2>
+      <span>HortiTech</span>
     </div>
 
-    <nav class="menu">
-      <a href="#"><i class="fa-solid fa-chart-line"></i> <span>Monitoramento</span></a>
-      <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> <span>Histórico</span></a>
-      <a href="#" class="active"><i class="fa-solid fa-bell"></i> <span>Alertas</span></a>
-      <a href="#"><i class="fa-solid fa-circle-info"></i> <span>Informações</span></a>
-      <a href="#" class="support"><i class="fa-solid fa-headset"></i> <span>Suporte</span></a>
+    <nav class="nav-menu">
+      <a href="/index.html" class="nav-link">
+        <i class="fa-solid fa-gauge-high"></i>
+        <span>MONITORAMENTO</span>
+      </a>
+      <a href="/pages/historico.html" class="nav-link">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>HISTÓRICO</span>
+      </a>
+      
+      <a href="/pages/alerta.html" class="nav-link active">
+        <i class="fa-solid fa-bell"></i>
+        <span>ALERTAS</span>
+      </a>
+      
+      <div class="nav-item-separator">SISTEMA</div>
+      
+      <a href="/pages/informacoes.html" class="nav-link">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>INFORMAÇÕES<br><small>GERAIS</small></span>
+      </a>
+      <a href="/pages/suporte.html" class="nav-link">
+        <i class="fa-solid fa-headset"></i>
+        <span>SUPORTE</span>
+      </a>
     </nav>
+
+    <div class="nav-footer">
+      <div class="status-indicator">
+        <div class="dot"></div>
+        <span>Online</span>
+      </div>
+    </div>
   </aside>
 
-  <main class="main-content">
-
-    <header class="topbar">
-      <div class="title-area">
-        <h1>Central de Alertas</h1>
-        <p>Gerencie ocorrências em tempo real</p>
+  <main class="main-viewport">
+    
+    <header class="content-header">
+      <div class="breadcrumb">
+        <span>Sistema</span>
+        <i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i>
+        <strong>Suporte</strong>
       </div>
 
-      <div class="topbar-actions">
-        <div class="search-box">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Buscar câmara...">
-        </div>
-        <button class="filter-btn">
-          <i class="fa-solid fa-sliders"></i>
-        </button>
+      <div class="user-profile">
+        <span class="user-name">Admin</span>
+        <div class="avatar"></div>
       </div>
     </header>
 
-    <section class="alerts-section">
-      <div class="section-title">
-        <span>Hoje • 13 Maio</span>
+    <div class="scrollable-content">
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <h1 class="main-heading" style="margin-bottom: 4px;">Central de <span class="highlight">Alertas</span></h1>
+          <h2 class="sub-heading" style="margin-bottom: 0;">Gerencie ocorrências em tempo real</h2>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Buscar câmara...">
+          </div>
+          <button class="filter-btn">
+            <i class="fa-solid fa-sliders"></i>
+          </button>
+        </div>
       </div>
 
-      <article class="alert-card warning">
-        <div class="alert-main-content">
-          <div class="icon-box">
-            <i class="fa-solid fa-temperature-high"></i>
-          </div>
-          <div class="alert-info">
-            <h3>Aumento de Temperatura</h3>
-            <div class="meta">
-              <span><i class="fa-solid fa-warehouse"></i> Câmara 01</span>
-              <span><i class="fa-solid fa-microchip"></i> ESP32</span>
-              <span><i class="fa-solid fa-clock"></i> 14:30h</span>
+      <section class="alerts-section">
+        <div class="section-title">
+          <span>Hoje • 13 Maio</span>
+        </div>
+
+        <article class="alert-card warning">
+          <div class="alert-main-content">
+            <div class="icon-box">
+              <i class="fa-solid fa-temperature-high"></i>
+            </div>
+            <div class="alert-info">
+              <h3>Aumento de Temperatura</h3>
+              <div class="meta">
+                <span><i class="fa-solid fa-warehouse"></i> Câmara 01</span>
+                <span><i class="fa-solid fa-microchip"></i> ESP32</span>
+                <span><i class="fa-solid fa-clock"></i> 14:30h</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="alert-side">
-          <strong>38.5°C</strong>
-          <button class="btn-details">Detalhes</button>
-        </div>
-      </article>
-
-      <article class="alert-card critical">
-        <div class="alert-main-content">
-          <div class="icon-box">
-            <i class="fa-solid fa-plug-circle-xmark"></i>
+          <div class="alert-side">
+            <strong>38.5°C</strong>
+            <button class="btn-details">Detalhes</button>
           </div>
-          <div class="alert-info">
-            <h3>Falha de Conexão</h3>
-            <div class="meta">
-              <span><i class="fa-solid fa-wifi"></i> Gateway Offline</span>
-              <span><i class="fa-solid fa-location-dot"></i> Setor Norte</span>
-              <span><i class="fa-solid fa-clock"></i> 12:15h</span>
+        </article>
+
+        <article class="alert-card critical">
+          <div class="alert-main-content">
+            <div class="icon-box">
+              <i class="fa-solid fa-plug-circle-xmark"></i>
+            </div>
+            <div class="alert-info">
+              <h3>Falha de Conexão</h3>
+              <div class="meta">
+                <span><i class="fa-solid fa-wifi"></i> Gateway Offline</span>
+                <span><i class="fa-solid fa-location-dot"></i> Setor Norte</span>
+                <span><i class="fa-solid fa-clock"></i> 12:15h</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="alert-side">
-          <div class="status-pill danger">OFFLINE</div>
-          <button class="btn-details">Detalhes</button>
-        </div>
-      </article>
+          <div class="alert-side">
+            <div class="status-pill danger">OFFLINE</div>
+            <button class="btn-details">Detalhes</button>
+          </div>
+        </article>
 
-    </section>
+      </section>
+    </div>
   </main>
 </div>
 
