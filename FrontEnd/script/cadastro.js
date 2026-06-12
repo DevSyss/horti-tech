@@ -36,7 +36,7 @@ formCadastro.addEventListener("submit", async function(event) {
 
             formCadastro.reset();
 
-            window.location.href = "/pages/login.html";
+            window.location.href = "/index.html";
 
         } else {
 
