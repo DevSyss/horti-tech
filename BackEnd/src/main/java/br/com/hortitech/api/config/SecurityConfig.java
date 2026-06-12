@@ -15,14 +15,12 @@ public class SecurityConfig {
         http
             // 1. DESABILITAR O CSRF (Obrigatório para APIs REST que usam POST/PUT/DELETE)
             .csrf(csrf -> csrf.disable()) 
-            
-            // 2. CONFIGURAR AS PERMISSÕES
             .authorizeHttpRequests(auth -> auth
-                // Libera totalmente qualquer tipo de requisição (GET, POST, PUT, DELETE) para suas APIs
                 .requestMatchers("/api/**").permitAll() 
                 .anyRequest().authenticated()
             );
         
         return http.build();
+ 
     }
-}
+  }

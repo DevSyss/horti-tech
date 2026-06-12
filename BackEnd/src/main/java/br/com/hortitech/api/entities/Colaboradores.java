@@ -2,11 +2,13 @@ package br.com.hortitech.api.entities;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -21,7 +23,9 @@ public class Colaboradores {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-
+	@OneToOne(cascade = CascadeType.ALL)
+	private Usuario usuario;
+	
 	@NotBlank(message = "O Nome É Obrigatório.")
 	@Pattern(
 	    regexp = "^[\\p{L} ]+$",
@@ -94,6 +98,13 @@ public class Colaboradores {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
     
     
 }
