@@ -1,4 +1,4 @@
-package br.com.hortitech.api.entities;
+	package br.com.hortitech.api.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
