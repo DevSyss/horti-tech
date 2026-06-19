@@ -23,18 +23,21 @@ formCadastro.addEventListener("submit", async function(event) {
         });
 
         
+if (resposta.ok) {
 
-        if (resposta.ok) {
+    const dados = await resposta.json();
 
-            const dados = await resposta.json();
 
-            console.log("Câmara Fria cadastrada:", dados);
+    localStorage.setItem(
+        "cameraCadastrada",
+        JSON.stringify(dados)
+    );
 
-            alert("Câmara Fria cadastrada com sucesso!");
 
-            formCadastro.reset();
+    alert("Câmara cadastrada com sucesso!");
 
-            window.location.href = "/index.html";
+    window.location.href = "/index.html";
+
 
         } else {
 
@@ -52,5 +55,6 @@ formCadastro.addEventListener("submit", async function(event) {
         alert("Não foi possível conectar ao servidor.");
     }
 });
+
 
 

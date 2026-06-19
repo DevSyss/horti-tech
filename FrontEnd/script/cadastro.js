@@ -72,3 +72,4 @@ cpfInput.addEventListener("input", function(e) {
 
     e.target.value = valor;
 });
+

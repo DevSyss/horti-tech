@@ -87,7 +87,7 @@
                 <div class="icon">
                   <i class="fa-solid fa-warehouse"></i>
                 </div>
-                <h2>Câmara 01 • São Paulo</h2>
+                <h2>Câmara 01</h2>
               </div>
               <div class="tag">ATIVA</div>
             </div>
@@ -152,7 +152,7 @@
 
           <div class="side-card">
             <h3>Última Atualização</h3>
-            <strong class="time">14:32</strong>
+            <strong class="time">-- : --</strong>
           </div>
         </aside>
 
@@ -161,6 +161,95 @@
   </main>
 
 </div>
+
+<div id="dadosCamera"></div>
+
+
+<script>
+
+document.getElementById("infoCamera").innerHTML = `
+
+
+<h2>${camera.nome}</h2>
+
+<p>
+Local: ${camera.local}
+</p>
+
+
+<p>
+Temperatura mínima:
+${camera.temperaturaMinima}°C
+</p>
+
+
+<p>
+Temperatura máxima:
+${camera.temperaturaMaxima}°C
+</p>
+
+
+<p>
+Sensor:
+${camera.sensor}
+</p>
+
+
+`;
+
+
+
+const camera =
+JSON.parse(localStorage.getItem("camera"));
+
+
+
+document.getElementById("dadosCamera").innerHTML = `
+
+
+<div class="card">
+
+
+<h2>
+<i class="fa-solid fa-house"></i>
+${camera.nome}
+</h2>
+
+
+<p>
+📍 Local:
+${camera.local}
+</p>
+
+
+<p>
+🌡 Temperatura mínima:
+${camera.temperaturaMinima}°C
+</p>
+
+
+<p>
+🌡 Temperatura máxima:
+${camera.temperaturaMaxima}°C
+</p>
+
+
+<p>
+📡 Sensor:
+${camera.sensor}
+</p>
+
+
+</div>
+
+
+`;
+
+
+
+
+
+</script>
 
 </body>
 </html>

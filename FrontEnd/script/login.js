@@ -28,7 +28,7 @@ formLogin.addEventListener("submit", async function(event){
             localStorage.setItem("usuarioSessao", JSON.stringify(dadosUsuario));
 
             // Redireciona o utilizador para a tela de administração
-            window.location.href = "cadastro.html";
+            window.location.href = "/index.html";
         } else {
             mensagemErro.innerText = "Usuário ou senha inválidos!";
         }

@@ -28,10 +28,15 @@ public class ColaboradoresServices {
 	}
 
 	public Colaboradores salvar(Colaboradores colaboradores) {
-		Usuario usuarioSalvo = usuarioService.salvar(colaboradores.getUsuario());
-
-		colaboradores.setUsuario(usuarioSalvo);
-
+		Usuario usuarioNovo = new Usuario();
+		
+	
+		usuarioNovo.setEmail(colaboradores.getEmail());
+		usuarioNovo.setSenha(colaboradores.getSenha());
+		usuarioNovo.setTipo(colaboradores.getTipo());
+		
+		usuarioService.salvar(usuarioNovo);
+		
 		return repository.save(colaboradores);
 	}
 
