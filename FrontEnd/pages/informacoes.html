@@ -10,13 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
   <link rel="stylesheet" href="/css/informacoes.css">
 </head>
 <body>
 
 <div class="app-wrapper">
 
+  <!-- SIDEBAR NAVEGAÇÃO -->
   <aside class="side-navigation">
     <div class="nav-brand">
       <div class="logo-circle">
@@ -60,6 +60,7 @@
     </div>
   </aside>
 
+  <!-- CONTEÚDO PRINCIPAL -->
   <main class="main-viewport">
     
     <header class="content-header">
@@ -71,88 +72,89 @@
 
       <div class="user-profile">
         <span class="user-name">Admin</span>
-        <div class="avatar"></div>
+        <div class="avatar">
+          <i class="fa-solid fa-user-gear"></i>
+        </div>
       </div>
     </header>
 
     <div class="scrollable-content">
-      <h1 class="main-heading">Informações <span class="highlight">Gerais</span></h1>
+      
+      <div class="page-header-actions">
+        <div>
+          <h1 class="main-heading">Informações <span class="highlight">Gerais</span></h1>
+          <h2 class="sub-heading">Visão abrangente dos módulos, hardware e parâmetros</h2>
+        </div>
+        <button class="btn-primary-action" id="btn-add-camera">
+          <i class="fa-solid fa-plus"></i> Nova Câmara
+        </button>
+      </div>
 
       <div class="dashboard-grid">
         
-        <div>
-          <section class="card">
-            <div class="card-header">
-              <div class="card-title">
-                <div class="icon">
-                  <i class="fa-solid fa-warehouse"></i>
-                </div>
-                <h2>Câmara 01</h2>
-              </div>
-              <div class="tag">ATIVA</div>
-            </div>
-
-            <div class="info-grid">
-              <div class="info-box">
-                <span>Temperatura Máxima</span>
-                <strong>11°C</strong>
-              </div>
-              <div class="info-box">
-                <span>Temperatura Mínima</span>
-                <strong>1°C</strong>
-              </div>
-              <div class="info-box">
-                <span>Umidade</span>
-                <strong>74%</strong>
-              </div>
-            </div>
-          </section>
-
-          <section class="card">
+        <!-- CONTAINER ONDE OS CARDS DE CÂMARAS/DISPOSITIVOS SÃO CARREGADOS DINAMICAMENTE -->
+        <div id="cameras-container">
+          
+          <!-- ESTÁTICO PADRÃO: DISPOSITIVO PRINCIPAL ESP32 -->
+          <section class="card" id="card-esp32">
             <div class="card-header">
               <div class="card-title">
                 <div class="icon">
                   <i class="fa-solid fa-microchip"></i>
                 </div>
-                <h2>ESP32 • Dispositivo Principal</h2>
+                <div>
+                  <h2>ESP32 • Dispositivo Principal</h2>
+                  <span class="card-subtitle">Gateway Central de Telemetria</span>
+                </div>
               </div>
-              <div class="tag">ONLINE</div>
+              <div class="tag tag-online">ONLINE</div>
             </div>
 
             <div class="info-grid">
               <div class="info-box">
                 <span>ID do Dispositivo</span>
-                <strong>1234567</strong>
+                <strong>HT-ESP32-99</strong>
               </div>
               <div class="info-box">
-                <span>Status</span>
-                <strong>Ativa</strong>
+                <span>Status de Conexão</span>
+                <strong class="text-success">Ativa (98%)</strong>
               </div>
               <div class="info-box">
                 <span>Localização</span>
-                <strong>Sorocaba</strong>
+                <strong>Sorocaba, SP</strong>
               </div>
             </div>
+
+            <div class="card-footer-action">
+              <button class="btn-card-action" onclick="window.openEsp32Details()">
+                <i class="fa-solid fa-sliders"></i> Ver Parâmetros
+              </button>
+            </div>
           </section>
+
+          <!-- ÁREA DINÂMICA VIA LOCALSTORAGE -->
+          <div id="dadosCamera"></div>
+
         </div>
 
+        <!-- PAINEL LATERAL -->
         <aside>
           <div class="side-card">
             <h3>Sensores Online</h3>
             <strong>92%</strong>
             <div class="progress">
-              <div></div>
+              <div style="width: 92%;"></div>
             </div>
           </div>
 
           <div class="side-card">
             <h3>Alertas Hoje</h3>
-            <strong>12</strong>
+            <strong class="text-warning">12</strong>
           </div>
 
           <div class="side-card">
             <h3>Última Atualização</h3>
-            <strong class="time">-- : --</strong>
+            <strong class="time" id="live-time">-- : -- : --</strong>
           </div>
         </aside>
 
@@ -162,94 +164,138 @@
 
 </div>
 
-<div id="dadosCamera"></div>
 
+<!-- =========================================
+     MODAL DE DETALHES DA CÂMARA / HARDWARE
+========================================= -->
+<div class="modal-backdrop" id="modal-details-backdrop">
+  <div class="modal-container" id="modal-details">
+    
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <div class="modal-icon-badge">
+          <i class="fa-solid fa-warehouse"></i>
+        </div>
+        <div>
+          <span class="modal-subtitle" id="modal-cam-location">Local: Sorocaba</span>
+          <h2 class="modal-title" id="modal-cam-title">Câmara 01</h2>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="btn-close-details-modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
 
-<script>
+    <div class="modal-body">
+      
+      <div class="modal-grid-metrics">
+        <div class="metric-card">
+          <span class="metric-label">Temp. Mínima</span>
+          <strong class="metric-value text-info" id="modal-temp-min">1°C</strong>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Temp. Máxima</span>
+          <strong class="metric-value text-danger" id="modal-temp-max">11°C</strong>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Sensor Vinculado</span>
+          <strong class="metric-value" id="modal-sensor-type">DHT22 / Capacitivo</strong>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Status da Operação</span>
+          <strong class="metric-value text-success" id="modal-op-status">Ativa</strong>
+        </div>
+      </div>
 
-document.getElementById("infoCamera").innerHTML = `
+      <div class="info-details-box">
+        <div class="box-header">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Diagnóstico de Operação</span>
+        </div>
+        <p class="diagnosis-text" id="modal-cam-description">
+          A câmara está operando dentro dos parâmetros térmicos pré-definidos. O microcontrolador envia leituras a cada 30 segundos com baixa taxa de ruído.
+        </p>
+      </div>
 
+    </div>
 
-<h2>${camera.nome}</h2>
+    <div class="modal-footer">
+      <button class="btn-modal-secondary" id="btn-close-details-footer">Fechar</button>
+    </div>
 
-<p>
-Local: ${camera.local}
-</p>
-
-
-<p>
-Temperatura mínima:
-${camera.temperaturaMinima}°C
-</p>
-
-
-<p>
-Temperatura máxima:
-${camera.temperaturaMaxima}°C
-</p>
-
-
-<p>
-Sensor:
-${camera.sensor}
-</p>
-
-
-`;
-
-
-
-const camera =
-JSON.parse(localStorage.getItem("camera"));
-
-
-
-document.getElementById("dadosCamera").innerHTML = `
-
-
-<div class="card">
-
-
-<h2>
-<i class="fa-solid fa-house"></i>
-${camera.nome}
-</h2>
-
-
-<p>
-📍 Local:
-${camera.local}
-</p>
-
-
-<p>
-🌡 Temperatura mínima:
-${camera.temperaturaMinima}°C
-</p>
-
-
-<p>
-🌡 Temperatura máxima:
-${camera.temperaturaMaxima}°C
-</p>
-
-
-<p>
-📡 Sensor:
-${camera.sensor}
-</p>
-
-
+  </div>
 </div>
 
 
-`;
+<!-- =========================================
+     MODAL DE CADASTRAR NOVA CÂMARA
+========================================= -->
+<div class="modal-backdrop" id="modal-add-backdrop">
+  <div class="modal-container" id="modal-add">
+    
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <div class="modal-icon-badge green-badge">
+          <i class="fa-solid fa-plus"></i>
+        </div>
+        <div>
+          <span class="modal-subtitle">Configuração de Hardware</span>
+          <h2 class="modal-title">Cadastrar Nova Câmara</h2>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="btn-close-add-modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
 
+    <form id="form-add-camera">
+      <div class="modal-body">
+        
+        <div class="form-group">
+          <label class="form-label" for="input-nome">Nome da Câmara</label>
+          <input type="text" id="input-nome" class="form-input" placeholder="Ex: Câmara 02 - Estufa Norte" required>
+        </div>
 
+        <div class="form-group">
+          <label class="form-label" for="input-local">Localização / Setor</label>
+          <input type="text" id="input-local" class="form-input" placeholder="Ex: Sorocaba - Bloco B" required>
+        </div>
 
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="input-temp-min">Temp. Mínima (°C)</label>
+            <input type="number" step="0.1" id="input-temp-min" class="form-input" placeholder="1.0" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="input-temp-max">Temp. Máxima (°C)</label>
+            <input type="number" step="0.1" id="input-temp-max" class="form-input" placeholder="12.0" required>
+          </div>
+        </div>
 
+        <div class="form-group">
+          <label class="form-label" for="input-sensor">Modelo do Sensor</label>
+          <select id="input-sensor" class="form-input" required>
+            <option value="DHT22 (Temperatura e Umidade)">DHT22 (Temperatura e Umidade)</option>
+            <option value="DS18B20 (Submersível/Solo)">DS18B20 (Submersível/Solo)</option>
+            <option value="BME280 (Pressão/Temp/Umid)">BME280 (Pressão/Temp/Umid)</option>
+          </select>
+        </div>
 
-</script>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-modal-secondary" id="btn-cancel-add">Cancelar</button>
+        <button type="submit" class="btn-modal-primary">
+          <i class="fa-solid fa-floppy-disk"></i> Salvar Câmara
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<!-- SCRIPT DA PÁGINA -->
+<script src="../script/informacoes.js"></script>
 
 </body>
 </html>
