@@ -5,18 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HortiTech • Central de Alertas</title>
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="/css/alerta.css">
+  
+  <!-- CSS Personalizado -->
+  <link rel="stylesheet" href="../css/alerta.css">
 </head>
 
 <body>
 
 <div class="app-wrapper">
 
+  <!-- SIDEBAR NAVEGAÇÃO -->
   <aside class="side-navigation">
     <div class="nav-brand">
       <div class="logo-circle">
@@ -38,6 +43,7 @@
       <a href="/pages/alerta.html" class="nav-link active">
         <i class="fa-solid fa-bell"></i>
         <span>ALERTAS</span>
+        <span class="nav-badge" id="alert-counter-badge">0</span>
       </a>
       
       <div class="nav-item-separator">SISTEMA</div>
@@ -60,89 +66,242 @@
     </div>
   </aside>
 
+  <!-- CONTEÚDO PRINCIPAL -->
   <main class="main-viewport">
     
     <header class="content-header">
       <div class="breadcrumb">
         <span>Sistema</span>
         <i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i>
-        <strong>Suporte</strong>
+        <strong>Central de Alertas</strong>
       </div>
 
       <div class="user-profile">
-        <span class="user-name">Admin</span>
-        <div class="avatar"></div>
+        <span class="user-name">Admin HortiTech</span>
+        <div class="avatar">
+          <i class="fa-solid fa-user-gear"></i>
+        </div>
       </div>
     </header>
 
     <div class="scrollable-content">
       
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+      <!-- CABEÇALHO DA PÁGINA COM BARRA DE PESQUISA -->
+      <div class="page-topbar">
         <div>
-          <h1 class="main-heading" style="margin-bottom: 4px;">Central de <span class="highlight">Alertas</span></h1>
-          <h2 class="sub-heading" style="margin-bottom: 0;">Gerencie ocorrências em tempo real</h2>
+          <h1 class="main-heading">Central de <span class="highlight">Alertas</span></h1>
+          <h2 class="sub-heading">Gerencie ocorrências e diagnósticos em tempo real</h2>
         </div>
 
         <div class="topbar-actions">
           <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Buscar câmara...">
+            <input type="text" id="input-search" placeholder="Buscar câmara, sensor ou título...">
+            <button class="clear-search-btn" id="btn-clear-search" style="display: none;">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
           </div>
-          <button class="filter-btn">
+
+          <button class="filter-btn" id="btn-open-filter" title="Filtrar alertas">
             <i class="fa-solid fa-sliders"></i>
+            <span class="filter-indicator" id="filter-indicator"></span>
           </button>
         </div>
       </div>
 
+      <!-- TAGS DE FILTROS ATIVOS -->
+      <div class="active-filters-bar" id="active-filters-bar" style="display: none;">
+        <span class="filters-label"><i class="fa-solid fa-filter"></i> Filtros ativos:</span>
+        <div class="filter-tags-list" id="filter-tags-list"></div>
+        <button class="btn-clear-all-filters" id="btn-clear-all-filters">Limpar todos</button>
+      </div>
+
+      <!-- PAINEL DE ALERTAS -->
       <section class="alerts-section">
         <div class="section-title">
-          <span>Hoje • 13 Maio</span>
+          <span>Ocorrências Recentes (<span id="alert-count-text">0</span>)</span>
         </div>
 
-        <article class="alert-card warning">
-          <div class="alert-main-content">
-            <div class="icon-box">
-              <i class="fa-solid fa-temperature-high"></i>
-            </div>
-            <div class="alert-info">
-              <h3>Aumento de Temperatura</h3>
-              <div class="meta">
-                <span><i class="fa-solid fa-warehouse"></i> Câmara 01</span>
-                <span><i class="fa-solid fa-microchip"></i> ESP32</span>
-                <span><i class="fa-solid fa-clock"></i> 14:30h</span>
-              </div>
-            </div>
-          </div>
-          <div class="alert-side">
-            <strong>38.5°C</strong>
-            <button class="btn-details">Detalhes</button>
-          </div>
-        </article>
+        <!-- LISTA ONDE OS CARDS SERÃO RENDERIZADOS DINAMICAMENTE -->
+        <div id="alerts-list-container"></div>
 
-        <article class="alert-card critical">
-          <div class="alert-main-content">
-            <div class="icon-box">
-              <i class="fa-solid fa-plug-circle-xmark"></i>
-            </div>
-            <div class="alert-info">
-              <h3>Falha de Conexão</h3>
-              <div class="meta">
-                <span><i class="fa-solid fa-wifi"></i> Gateway Offline</span>
-                <span><i class="fa-solid fa-location-dot"></i> Setor Norte</span>
-                <span><i class="fa-solid fa-clock"></i> 12:15h</span>
-              </div>
-            </div>
+        <!-- ESTADO VAZIO CUJO TEXTO MUDA QUANDO NÃO HÁ RESULTADOS DA PESQUISA -->
+        <div class="empty-state" id="empty-state" style="display: none;">
+          <div class="empty-icon">
+            <i class="fa-solid fa-bell-slash"></i>
           </div>
-          <div class="alert-side">
-            <div class="status-pill danger">OFFLINE</div>
-            <button class="btn-details">Detalhes</button>
-          </div>
-        </article>
-
+          <h3 id="empty-state-title">Nenhum alerta encontrado</h3>
+          <p id="empty-state-desc">Tente ajustar seus termos de busca ou remover os filtros aplicados.</p>
+          <button class="btn-reset-search" id="btn-reset-search">Limpar Pesquisa</button>
+        </div>
       </section>
+
     </div>
   </main>
 </div>
+
+
+<!-- =========================================
+     MODAL DE DETALHES DO ALERTA
+========================================= -->
+<div class="modal-backdrop" id="modal-details-backdrop">
+  <div class="modal-container" id="modal-details">
+    
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <div class="modal-icon-badge" id="modal-severity-icon">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+          <span class="modal-subtitle" id="modal-camara-tag">Câmara 01 • Setor A</span>
+          <h2 class="modal-title" id="modal-alert-title">Aumento de Temperatura</h2>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="btn-close-modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      
+      <!-- GRID DE MÉTRICAS -->
+      <div class="modal-grid-metrics">
+        <div class="metric-card">
+          <span class="metric-label">Valor Detectado</span>
+          <strong class="metric-value highlight-danger" id="modal-metric-value">38.5°C</strong>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Limite Esperado</span>
+          <strong class="metric-value" id="modal-metric-expected">18.0°C - 24.0°C</strong>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Horário do Disparo</span>
+          <strong class="metric-value" id="modal-metric-time">14:30:12h</strong>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Dispositivo Hardware</span>
+          <strong class="metric-value" id="modal-metric-device">ESP32 (Node-04)</strong>
+        </div>
+      </div>
+
+      <!-- CAIXA DE DIAGNÓSTICO -->
+      <div class="diagnosis-box">
+        <div class="box-header">
+          <i class="fa-solid fa-stethoscope"></i>
+          <span>Diagnóstico Automático HortiTech</span>
+        </div>
+        <p class="diagnosis-text" id="modal-diagnosis-text">
+          Oscilação térmica crítica detectada pelo sensor DHT22. Risco moderado de comprometimento da germinação e desidratação foliar da cultura.
+        </p>
+      </div>
+
+      <!-- LISTA DE AÇÕES RECOMENDADAS -->
+      <div class="recommended-actions">
+        <h4><i class="fa-solid fa-list-check"></i> Procedimentos de Correção</h4>
+        <ul id="modal-actions-list">
+          <li>Verifique se o sistema de ventilação do Setor A está desarmado.</li>
+          <li>Inspecione os fusíveis e fonte de alimentação da Câmara 01.</li>
+          <li>Acione a irrigação de emergência se a temperatura exceder 40°C.</li>
+        </ul>
+      </div>
+
+      <!-- HISTÓRICO RÁPIDO DO DISPOSITIVO -->
+      <div class="device-history">
+        <div class="history-item">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Status do Gateway: <strong>Operacional (Sinal 88%)</strong></span>
+        </div>
+        <div class="history-item">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Última calibração: <strong>10 dias atrás</strong></span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RODAPÉ DO MODAL -->
+    <div class="modal-footer">
+      <button class="btn-modal-secondary" id="btn-acknowledge-alert">
+        <i class="fa-solid fa-eye"></i> Reconhecer
+      </button>
+      <button class="btn-modal-primary" id="btn-resolve-alert">
+        <i class="fa-solid fa-check"></i> Resolver Alerta
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =========================================
+     MODAL DE FILTROS AVANÇADOS
+========================================= -->
+<div class="modal-backdrop" id="modal-filter-backdrop">
+  <div class="modal-container filter-modal-size" id="modal-filter">
+    
+    <div class="modal-header">
+      <div class="modal-title-group">
+        <div class="modal-icon-badge filter-badge">
+          <i class="fa-solid fa-sliders"></i>
+        </div>
+        <div>
+          <h2 class="modal-title">Filtrar Alertas</h2>
+          <span class="modal-subtitle">Refine os resultados exibidos na central</span>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="btn-close-filter-modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      
+      <!-- SEVERIDADE -->
+      <div class="filter-group">
+        <label class="filter-label">Nível de Severidade</label>
+        <div class="filter-options-grid">
+          <button class="chip-btn active" data-filter-type="severity" data-value="all">Todos</button>
+          <button class="chip-btn" data-filter-type="severity" data-value="critical">Crítico</button>
+          <button class="chip-btn" data-filter-type="severity" data-value="warning">Atenção</button>
+          <button class="chip-btn" data-filter-type="severity" data-value="info">Informativo</button>
+        </div>
+      </div>
+
+      <!-- CÂMARA / LOCAL -->
+      <div class="filter-group">
+        <label class="filter-label">Câmara / Setor</label>
+        <select class="filter-select" id="select-filter-camara">
+          <option value="all">Todas as Câmaras</option>
+          <option value="Câmara 01">Câmara 01</option>
+          <option value="Câmara 02">Câmara 02</option>
+          <option value="Câmara 03">Câmara 03</option>
+          <option value="Setor Norte">Setor Norte</option>
+          <option value="Estufa Sul">Estufa Sul</option>
+        </select>
+      </div>
+
+      <!-- STATUS DO ALERTA -->
+      <div class="filter-group">
+        <label class="filter-label">Status da Ocorrência</label>
+        <div class="filter-options-grid">
+          <button class="chip-btn active" data-filter-type="status" data-value="all">Todos</button>
+          <button class="chip-btn" data-filter-type="status" data-value="active">Ativos</button>
+          <button class="chip-btn" data-filter-type="status" data-value="acknowledged">Reconhecidos</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-modal-secondary" id="btn-reset-filters">Limpar Filtros</button>
+      <button class="btn-modal-primary" id="btn-apply-filters">Aplicar Filtros</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="../script/alerta.js"></script>
 
 </body>
 </html>
