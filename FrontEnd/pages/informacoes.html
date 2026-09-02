@@ -85,9 +85,7 @@
           <h1 class="main-heading">Informações <span class="highlight">Gerais</span></h1>
           <h2 class="sub-heading">Visão abrangente dos módulos, hardware e parâmetros</h2>
         </div>
-        <button class="btn-primary-action" id="btn-add-camera">
-          <i class="fa-solid fa-plus"></i> Nova Câmara
-        </button>
+        
       </div>
 
       <div class="dashboard-grid">
@@ -226,70 +224,6 @@
   </div>
 </div>
 
-
-<!-- =========================================
-     MODAL DE CADASTRAR NOVA CÂMARA
-========================================= -->
-<div class="modal-backdrop" id="modal-add-backdrop">
-  <div class="modal-container" id="modal-add">
-    
-    <div class="modal-header">
-      <div class="modal-title-group">
-        <div class="modal-icon-badge green-badge">
-          <i class="fa-solid fa-plus"></i>
-        </div>
-        <div>
-          <span class="modal-subtitle">Configuração de Hardware</span>
-          <h2 class="modal-title">Cadastrar Nova Câmara</h2>
-        </div>
-      </div>
-      <button class="modal-close-btn" id="btn-close-add-modal">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-
-    <form id="form-add-camera">
-      <div class="modal-body">
-        
-        <div class="form-group">
-          <label class="form-label" for="input-nome">Nome da Câmara</label>
-          <input type="text" id="input-nome" class="form-input" placeholder="Ex: Câmara 02 - Estufa Norte" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="input-local">Localização / Setor</label>
-          <input type="text" id="input-local" class="form-input" placeholder="Ex: Sorocaba - Bloco B" required>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" for="input-temp-min">Temp. Mínima (°C)</label>
-            <input type="number" step="0.1" id="input-temp-min" class="form-input" placeholder="1.0" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="input-temp-max">Temp. Máxima (°C)</label>
-            <input type="number" step="0.1" id="input-temp-max" class="form-input" placeholder="12.0" required>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="input-sensor">Modelo do Sensor</label>
-          <select id="input-sensor" class="form-input" required>
-            <option value="DHT22 (Temperatura e Umidade)">DHT22 (Temperatura e Umidade)</option>
-            <option value="DS18B20 (Submersível/Solo)">DS18B20 (Submersível/Solo)</option>
-            <option value="BME280 (Pressão/Temp/Umid)">BME280 (Pressão/Temp/Umid)</option>
-          </select>
-        </div>
-
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn-modal-secondary" id="btn-cancel-add">Cancelar</button>
-        <button type="submit" class="btn-modal-primary">
-          <i class="fa-solid fa-floppy-disk"></i> Salvar Câmara
-        </button>
-      </div>
-    </form>
 
   </div>
 </div>
